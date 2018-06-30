@@ -6,11 +6,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <include layout="@layout/layout_header"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,6 +33,7 @@
                 android:id="@+id/recyclerQuality">
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,22 +48,10 @@
                 android:paddingLeft="16dp"/>
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="500dp"
                 android:padding="8dp"
                 android:id="@+id/recyclerReview">
             </android.support.v7.widget.RecyclerView>
-            <!--<include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>-->
         </LinearLayout>
 
     </LinearLayout>

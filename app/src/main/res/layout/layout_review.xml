@@ -20,17 +20,16 @@
         android:layout_toRightOf="@+id/reviewerImage"
         android:text="Sandeep Kumar"
         android:textSize="20dp" />
-
     <RatingBar
         android:id="@+id/reviewerRating"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/reviewerName"
-        android:layout_alignParentRight="true"
+        android:layout_below="@+id/reviewerName"
+        android:layout_toRightOf="@id/reviewerImage"
         android:numStars="5" />
     <TextView
-        android:id="@+id/reviewerText"
+        android:id="@+id/reviewerComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/reviewerRating"
