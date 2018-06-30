@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="450dp"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/circleImageView"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="48dp"
+            android:src="@drawable/sk"
+            app:civ_border_color="#fff"
+            app:civ_border_width="2dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="24dp">
+            <TextView
+                android:id="@+id/topicName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sandeep Kumar"
+                android:textSize="24dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tech Dept." />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Write a Review"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+            <!--<RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="12dp"
+                android:numStars="5"
+                style="?android:attr/ratingBarStyleIndicator"/>-->
+        </LinearLayout>
+        <!--<TextView
+            android:id="@+id/employeeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="72dp"
+            android:layout_marginLeft="24dp"
+            android:text="Sandeep Kumar"
+            android:textSize="24dp" />
+        <TextView
+            android:id="@+id/employeeDept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="48dp"
+            android:layout_marginLeft="24dp"
+            android:text="Tech Dept."
+            android:textSize="16dp" />
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="24dp"
+            android:numStars="5"
+            style="?android:attr/ratingBarStyleIndicator"/>-->
+
+    </RelativeLayout>
+    <!--<ScrollView
+        android:layout_weight="0.4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ScrollView>-->
+</LinearLayout>

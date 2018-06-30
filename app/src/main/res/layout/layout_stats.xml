@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:padding="8dp"
+    android:gravity="center"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible">
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/mainRatingPie"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="108dp" />
+        <TextView
+            android:id="@+id/mainRatingPoint"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:text="4.5"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="108dp" />
+        <TextView
+            android:id="@+id/mainRatingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/mainRatingPie"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:text="Excellent" />
+        <TextView
+            android:id="@+id/mainRatingUsers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/mainRatingText"
+            android:layout_below="@+id/mainRatingText"
+            android:layout_marginTop="36dp"
+            android:text="256 Users" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <include layout="@layout/layout_quality"/>
+        <include layout="@layout/layout_quality"/>
+        <include layout="@layout/layout_quality"/>
+        <include layout="@layout/layout_quality"/>
+        <include layout="@layout/layout_quality"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="@color/white">
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/reviewerImage"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/sk"
+        app:civ_border_color="#fff"
+        app:civ_border_width="2dp"
+        android:layout_marginRight="16dp"/>
+    <TextView
+        android:id="@+id/reviewerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/reviewerImage"
+        android:text="Sandeep Kumar"
+        android:textSize="20dp" />
+
+    <RatingBar
+        android:id="@+id/reviewerRating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/reviewerName"
+        android:layout_alignParentRight="true"
+        android:numStars="5" />
+    <TextView
+        android:id="@+id/reviewerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reviewerRating"
+        android:layout_toRightOf="@+id/reviewerImage"
+        android:text="Sandeep Kumar" />
+</RelativeLayout>

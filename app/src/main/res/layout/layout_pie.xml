@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="@color/white">
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/normalRatingPie"
+        android:layout_width="72dp"
+        android:layout_height="72dp" />
+    <TextView
+        android:id="@+id/normalRatingPoint"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:text="4.5"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/normalRatingText"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/normalRatingPie"
+        android:layout_marginTop="8dp"
+        android:text="Excellent"
+        android:textAlignment="center" />
+</RelativeLayout>

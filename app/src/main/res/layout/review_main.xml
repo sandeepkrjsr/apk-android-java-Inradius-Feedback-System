@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/layout_header"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:background="@color/white">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Statistics"
+                android:textSize="24dp"
+                android:paddingLeft="16dp"/>
+            <include layout="@layout/layout_stats"/>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/layout_pie"/>
+                    <include layout="@layout/layout_pie"/>
+                    <include layout="@layout/layout_pie"/>
+                    <include layout="@layout/layout_pie"/>
+                    <include layout="@layout/layout_pie"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:background="@color/white">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reviews"
+                android:textSize="24dp"
+                android:paddingLeft="16dp"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
