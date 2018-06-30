@@ -1,18 +1,15 @@
 package com.kodexlabs.inradius;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends Activity {
 
@@ -30,5 +27,21 @@ public class MainActivity extends Activity {
 
         PieChart pieChart = (PieChart) findViewById(R.id.mainRatingPie);
         fp.makePie(pieChart, mainRating);
+
+
+        List<String> arrayQuality = Arrays.asList("Punctuality","Attitude","Work","Flexible","Honesty");
+        List<String> arrayRating = Arrays.asList("4.0","3.5","4.5","2.0","1.5");
+
+        LinearLayoutManager layoutQuality = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView recyclerQuality = (RecyclerView) findViewById(R.id.recyclerQuality);
+        recyclerQuality.setLayoutManager(layoutQuality);
+        Adapter_Pie adapter_pie = new Adapter_Pie(arrayQuality, arrayRating);
+        recyclerQuality.setAdapter(adapter_pie);
+
+        LinearLayoutManager layoutReview = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView recyclerReview = (RecyclerView) findViewById(R.id.recyclerReview);
+        recyclerReview.setLayoutManager(layoutReview);
+        Adapter_Review adapter_review = new Adapter_Review(arrayQuality, arrayRating);
+        recyclerReview.setAdapter(adapter_review);
     }
 }

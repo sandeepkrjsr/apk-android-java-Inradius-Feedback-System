@@ -36,7 +36,7 @@ public class Function_Pie extends Activity {
 
         pieDataSet = new PieDataSet(entries, "");
         pieData = new PieData(PieEntryLabels, pieDataSet);
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         pieChart.setData(pieData);
         pieChart.animateY(3000);
 

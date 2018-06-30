@@ -24,19 +24,12 @@
                 android:textSize="24dp"
                 android:paddingLeft="16dp"/>
             <include layout="@layout/layout_stats"/>
-            <HorizontalScrollView
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <include layout="@layout/layout_pie"/>
-                    <include layout="@layout/layout_pie"/>
-                    <include layout="@layout/layout_pie"/>
-                    <include layout="@layout/layout_pie"/>
-                    <include layout="@layout/layout_pie"/>
-                </LinearLayout>
-            </HorizontalScrollView>
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:id="@+id/recyclerQuality">
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,6 +43,13 @@
                 android:text="Reviews"
                 android:textSize="24dp"
                 android:paddingLeft="16dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:id="@+id/recyclerReview">
+            </android.support.v7.widget.RecyclerView>
+            <!--<include layout="@layout/layout_review"/>
             <include layout="@layout/layout_review"/>
             <include layout="@layout/layout_review"/>
             <include layout="@layout/layout_review"/>
@@ -60,8 +60,7 @@
             <include layout="@layout/layout_review"/>
             <include layout="@layout/layout_review"/>
             <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
-            <include layout="@layout/layout_review"/>
+            <include layout="@layout/layout_review"/>-->
         </LinearLayout>
 
     </LinearLayout>

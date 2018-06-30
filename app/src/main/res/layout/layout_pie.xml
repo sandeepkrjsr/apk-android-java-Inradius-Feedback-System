@@ -3,7 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="8dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/normalPie">
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/normalRatingPie"
         android:layout_width="72dp"
@@ -21,7 +22,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/normalRatingPie"
-        android:layout_marginTop="8dp"
         android:text="Excellent"
         android:textAlignment="center" />
 </RelativeLayout>
