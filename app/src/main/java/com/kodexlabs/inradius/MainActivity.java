@@ -1,9 +1,15 @@
 package com.kodexlabs.inradius;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -50,5 +56,14 @@ public class MainActivity extends Activity {
         recyclerReview.setLayoutManager(layoutReview);
         Adapter_Review adapter_review = new Adapter_Review(arrayUser, arrayComment, arrayRated);
         recyclerReview.setAdapter(adapter_review);
+
+        TextView addreview = (TextView)findViewById(R.id.addreview);
+        addreview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Activity_Review.class);
+                startActivity(intent);
+            }
+        });
     }
 }

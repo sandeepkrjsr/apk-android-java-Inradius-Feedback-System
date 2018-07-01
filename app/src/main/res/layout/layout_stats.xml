@@ -46,10 +46,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone">
-        <include layout="@layout/layout_quality"/>
-        <include layout="@layout/layout_quality"/>
-        <include layout="@layout/layout_quality"/>
-        <include layout="@layout/layout_quality"/>
-        <include layout="@layout/layout_quality"/>
+        <include layout="@layout/row_quality"/>
+        <include layout="@layout/row_quality"/>
+        <include layout="@layout/row_quality"/>
+        <include layout="@layout/row_quality"/>
+        <include layout="@layout/row_quality"/>
     </LinearLayout>
 </RelativeLayout>

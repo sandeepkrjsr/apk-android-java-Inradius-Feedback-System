@@ -43,7 +43,7 @@ class Adapter_Pie extends RecyclerView.Adapter<Adapter_Pie.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.layout_pie, parent, false);
+        View view = inflater.inflate(R.layout.row_pie, parent, false);
         context=  view.getContext();
         ViewHolder viewHolder = new ViewHolder(view);
 

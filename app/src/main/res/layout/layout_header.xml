@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="Tech Dept." />
             <TextView
+                android:id="@+id/addreview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Write a Review"

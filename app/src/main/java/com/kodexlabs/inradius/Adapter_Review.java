@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.PieChart;
-
 import java.util.List;
 
 /**
@@ -46,7 +44,7 @@ class Adapter_Review extends RecyclerView.Adapter<Adapter_Review.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.layout_review, parent, false);
+        View view = inflater.inflate(R.layout.row_review, parent, false);
         context=  view.getContext();
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
