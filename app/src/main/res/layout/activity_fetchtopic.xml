@@ -33,15 +33,6 @@
         android:padding="8dp"/>
 
     <TextView
-        android:id="@+id/reviewers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reviewers : "
-        android:textSize="16dp"
-        android:layout_margin="8dp"
-        android:padding="8dp"/>
-
-    <TextView
         android:id="@+id/rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,10 +42,10 @@
         android:padding="8dp"/>
 
     <TextView
-        android:id="@+id/fb_location"
+        android:id="@+id/reviewers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Location : "
+        android:text="Reviewers : "
         android:textSize="16dp"
         android:layout_margin="8dp"
         android:padding="8dp"/>

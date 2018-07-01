@@ -17,9 +17,9 @@ import org.json.JSONObject;
 
 public class Activity_fetchtopic extends AppCompatActivity {
 
-    private TextView idFacebook, name, email, gender, birthday, location;
+    private TextView id, topic, desc, rating, reviewers;
 
-    private String get_idFacebook, get_name, get_email, get_gender, get_birthday, get_location;
+    private String get_id, get_topic, get_desc, get_rating, get_reviewers;
 
     static String DATA_URL = "http://kiitecell.hol.es/Inradius_topic_fetch.php";
 
@@ -29,26 +29,18 @@ public class Activity_fetchtopic extends AppCompatActivity {
         setContentView(R.layout.activity_fetchtopic);
         Intent bundle = getIntent();
 
-        get_idFacebook = bundle.getStringExtra("idFacebook");
-        getData(get_idFacebook);
+        get_id = bundle.getStringExtra("idFacebook");
+        getData(get_id);
 
-        idFacebook = (TextView)findViewById(R.id.id);
-        name = (TextView)findViewById(R.id.topic);
-        email = (TextView)findViewById(R.id.desc);
-        gender = (TextView)findViewById(R.id.rating);
-        birthday = (TextView)findViewById(R.id.reviewers);
-
-        idFacebook.setText("Id : " + get_idFacebook);
-        //profilePictureView = (ProfilePictureView)findViewById(R.id.picture);
-        //profilePictureView.setProfileId(get_idFacebook);
-
-        /*ShareDialog shareDialog = new ShareDialog(this);
-        ShareLinkContent content = new ShareLinkContent.Builder().build();
-        shareDialog.shower(content);*/
+        id = (TextView)findViewById(R.id.id);
+        topic = (TextView)findViewById(R.id.topic);
+        desc = (TextView)findViewById(R.id.desc);
+        rating = (TextView)findViewById(R.id.rating);
+        reviewers = (TextView)findViewById(R.id.reviewers);
     }
 
     private void getData(String idFacebook) {
-        String url = DATA_URL + "?id=36226";
+        String url = DATA_URL + "?id=24";
 
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -70,17 +62,17 @@ public class Activity_fetchtopic extends AppCompatActivity {
             JSONArray result = jsonObject.getJSONArray("result");
             JSONObject get_data = result.getJSONObject(0);
 
-            get_name = get_data.getString("id");
-            get_email = get_data.getString("name");
-            get_gender = get_data.getString("email");
-            get_birthday = get_data.getString("pass");
-            get_gender = get_data.getString("level");
-            get_birthday = get_data.getString("dept");
+            get_id = get_data.getString("id");
+            get_topic = get_data.getString("topic");
+            get_desc = get_data.getString("desc");
+            get_rating = get_data.getString("rating");
+            get_reviewers = get_data.getString("reviewers");
 
-            name.setText("Name : " + get_name);
-            email.setText("Email : " + get_email);
-            gender.setText("Gender : " + get_gender);
-            birthday.setText("Birthday : " + get_birthday);
+            id.setText("Name : " + get_id);
+            topic.setText("Name : " + get_topic);
+            desc.setText("Email : " + get_desc);
+            rating.setText("Gender : " + get_rating);
+            reviewers.setText("Birthday : " + get_reviewers);
 
         } catch (JSONException e) {
         }

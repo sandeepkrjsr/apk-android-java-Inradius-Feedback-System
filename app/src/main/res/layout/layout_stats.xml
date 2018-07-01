@@ -8,8 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:layout_height="wrap_content">
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/mainRatingPie"
             android:layout_width="96dp"
@@ -33,23 +32,12 @@
             android:layout_centerVertical="true"
             android:text="Excellent" />
         <TextView
-            android:id="@+id/mainRatingUsers"
+            android:id="@+id/mainRatingReviewers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/mainRatingText"
             android:layout_below="@+id/mainRatingText"
             android:layout_marginTop="36dp"
-            android:text="256 Users" />
+            android:text="256 Reviews" />
     </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
-        <include layout="@layout/row_quality"/>
-        <include layout="@layout/row_quality"/>
-        <include layout="@layout/row_quality"/>
-        <include layout="@layout/row_quality"/>
-        <include layout="@layout/row_quality"/>
-    </LinearLayout>
 </RelativeLayout>

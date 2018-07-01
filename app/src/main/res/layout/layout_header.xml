@@ -28,12 +28,13 @@
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="24dp">
             <TextView
-                android:id="@+id/topicName"
+                android:id="@+id/topic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sandeep Kumar"
                 android:textSize="24dp"/>
             <TextView
+                android:id="@+id/desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tech Dept." />
