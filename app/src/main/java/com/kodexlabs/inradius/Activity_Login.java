@@ -23,11 +23,12 @@ public class Activity_Login extends Activity {
 
     private TextView email, pass;
 
-    private String input_email, input_pass, get_email, get_pass;
+    private String input_email, input_pass, get_email, get_pass, get_id;
 
     private static SharedPreferences preferences;
     private String prefName = "MyPref";
     private static final String UID = "UID";
+    public static String loggedin;
 
     static String DATA_URL = "http://kiitecell.hol.es/Inradius_employee_login.php";
 
@@ -40,11 +41,9 @@ public class Activity_Login extends Activity {
         pass = (TextView)findViewById(R.id.pass);
 
         preferences = getSharedPreferences(prefName, MODE_PRIVATE);
-        String loggedin = preferences.getString(UID, "UID");
+        loggedin = preferences.getString(UID, "UID");
 
-        if (loggedin.equals("UID")){
-
-        } else
+        if (!loggedin.equals("UID"))
             nextActivity(loggedin);
     }
 
@@ -74,14 +73,15 @@ public class Activity_Login extends Activity {
             JSONArray result = jsonObject.getJSONArray("result");
             JSONObject get_data = result.getJSONObject(0);
 
+            get_id = get_data.getString("id");
             get_email = get_data.getString("email");
             get_pass = get_data.getString("pass");
 
             if (get_email.compareTo(input_email)==0){
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString(UID, input_email);
+                editor.putString(UID, get_id);
                 editor.commit();
-                nextActivity(input_email);
+                nextActivity(get_id);
             }else {
                 Toast.makeText(getBaseContext(), "Login Failed!",Toast.LENGTH_SHORT).show();
             }
@@ -91,7 +91,7 @@ public class Activity_Login extends Activity {
 
     private void nextActivity(String bundle){
         if(bundle != null){
-            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            Intent intent = new Intent(getBaseContext(), Activity_Dashboard.class);
             startActivity(intent);
             finish();
         }

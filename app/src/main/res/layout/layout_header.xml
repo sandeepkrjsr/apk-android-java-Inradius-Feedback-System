@@ -32,7 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sandeep Kumar"
-                android:textSize="24dp"/>
+                android:textSize="24dp"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/desc"
                 android:layout_width="wrap_content"
@@ -44,6 +45,8 @@
                 android:layout_height="wrap_content"
                 android:text="Write a Review"
                 android:textStyle="bold"
+                android:background="@color/background"
+                android:padding="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"/>
             <!--<RatingBar
@@ -54,37 +57,5 @@
                 android:numStars="5"
                 style="?android:attr/ratingBarStyleIndicator"/>-->
         </LinearLayout>
-        <!--<TextView
-            android:id="@+id/employeeName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="72dp"
-            android:layout_marginLeft="24dp"
-            android:text="Sandeep Kumar"
-            android:textSize="24dp" />
-        <TextView
-            android:id="@+id/employeeDept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="48dp"
-            android:layout_marginLeft="24dp"
-            android:text="Tech Dept."
-            android:textSize="16dp" />
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="24dp"
-            android:numStars="5"
-            style="?android:attr/ratingBarStyleIndicator"/>-->
-
     </RelativeLayout>
-    <!--<ScrollView
-        android:layout_weight="0.4"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ScrollView>-->
 </LinearLayout>

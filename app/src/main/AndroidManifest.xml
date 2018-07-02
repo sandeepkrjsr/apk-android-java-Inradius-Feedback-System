@@ -12,16 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity_Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".MainActivity"/>
-        <activity android:name=".Activity_Review"
-            android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>-->
+        <activity android:name=".Activity_Dashboard"/>
+        <activity android:name=".Activity_Info"/>
+        <activity android:name=".Dialog_Review"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>
+        <activity android:name=".Dialog_Topic_Add"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>
 
     </application>
 

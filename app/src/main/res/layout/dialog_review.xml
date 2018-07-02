@@ -13,6 +13,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:id="@+id/recyclerQuality">
+        </android.support.v7.widget.RecyclerView>
         <include layout="@layout/row_rateus"/>
         <include layout="@layout/row_rateus"/>
     </LinearLayout>
