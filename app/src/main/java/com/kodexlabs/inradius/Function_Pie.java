@@ -36,7 +36,7 @@ public class Function_Pie extends Activity {
 
         pieDataSet = new PieDataSet(entries, "");
         pieData = new PieData(PieEntryLabels, pieDataSet);
-        pieDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         pieChart.setData(pieData);
         pieChart.animateY(3000);
 
@@ -45,13 +45,4 @@ public class Function_Pie extends Activity {
         pieChart.getLegend().setEnabled(false);
         pieChart.setDescription("");
     }
-
-    /*public void AddValuesToPIEENTRY(float v){
-        entries.add(new BarEntry(4f, 0));
-        entries.add(new BarEntry(1f, 1));
-    }
-
-    public void AddValuesToPieEntryLabels(){
-
-    }*/
 }

@@ -23,12 +23,14 @@ public class Activity_Login extends Activity {
 
     private TextView email, pass;
 
-    private String input_email, input_pass, get_email, get_pass, get_id;
+    private String input_email, input_pass, get_email, get_pass, get_id, get_name;
 
     private static SharedPreferences preferences;
     private String prefName = "MyPref";
     private static final String UID = "UID";
+    private static final String USER = "USER";
     public static String loggedin;
+    public static String loggedname;
 
     static String DATA_URL = "http://kiitecell.hol.es/Inradius_employee_login.php";
 
@@ -42,6 +44,7 @@ public class Activity_Login extends Activity {
 
         preferences = getSharedPreferences(prefName, MODE_PRIVATE);
         loggedin = preferences.getString(UID, "UID");
+        loggedname = preferences.getString(USER, "USER");
 
         if (!loggedin.equals("UID"))
             nextActivity(loggedin);
@@ -74,14 +77,17 @@ public class Activity_Login extends Activity {
             JSONObject get_data = result.getJSONObject(0);
 
             get_id = get_data.getString("id");
+            get_name = get_data.getString("name");
             get_email = get_data.getString("email");
             get_pass = get_data.getString("pass");
 
             if (get_email.compareTo(input_email)==0){
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString(UID, get_id);
+                editor.putString(USER, get_name);
                 editor.commit();
-                nextActivity(get_id);
+                Intent intent = new Intent(getBaseContext(), Activity_Login.class);
+                startActivity(intent);
             }else {
                 Toast.makeText(getBaseContext(), "Login Failed!",Toast.LENGTH_SHORT).show();
             }

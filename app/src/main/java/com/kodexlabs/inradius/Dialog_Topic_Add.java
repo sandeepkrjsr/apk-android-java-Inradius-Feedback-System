@@ -24,6 +24,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -52,7 +53,8 @@ public class Dialog_Topic_Add extends AppCompatActivity {
     }
 
     public void Next(View view){
-        //rating.setVisibility(View.GONE);
+        input_topic.setVisibility(View.GONE);
+        input_desc.setVisibility(View.GONE);
         //comment.setVisibility(View.VISIBLE);
         //anonymous.setVisibility(View.VISIBLE);
         next.setVisibility(View.GONE);
@@ -66,7 +68,7 @@ public class Dialog_Topic_Add extends AppCompatActivity {
 
     private void putData() {
         Random random = new Random();
-        int number = 1000 + random.nextInt(9999);
+        int number = 999 + random.nextInt(9000);
 
         id = ""+number;
         topic = input_topic.getText().toString();

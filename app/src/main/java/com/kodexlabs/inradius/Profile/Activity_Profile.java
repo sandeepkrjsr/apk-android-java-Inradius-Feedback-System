@@ -1,4 +1,4 @@
-package com.kodexlabs.inradius;
+package com.kodexlabs.inradius.Profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +10,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.kodexlabs.inradius.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Activity_fetchtopic extends AppCompatActivity {
+public class Activity_Profile extends AppCompatActivity {
 
     private TextView id, topic, desc, rating, reviewers;
 
@@ -26,7 +27,7 @@ public class Activity_fetchtopic extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fetchtopic);
+        setContentView(R.layout.profile_activity_profile);
         Intent bundle = getIntent();
 
         get_id = bundle.getStringExtra("idFacebook");

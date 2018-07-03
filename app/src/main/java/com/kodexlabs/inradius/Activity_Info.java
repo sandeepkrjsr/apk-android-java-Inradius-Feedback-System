@@ -26,7 +26,7 @@ import java.util.List;
 public class Activity_Info extends Activity {
 
     private RecyclerView recyclerReview, recyclerQuality;
-    private TextView id, topic, desc, rating, reviewers;
+    private TextView topic, desc, rating, reviewers, addreview;
     private PieChart pieChart;
 
     private List<String> arrayReviewer, arrayRated, arrayCommented, arrayMeasure, arrayRate;
@@ -47,6 +47,7 @@ public class Activity_Info extends Activity {
 
         topic = (TextView)findViewById(R.id.topic);
         desc = (TextView)findViewById(R.id.desc);
+        addreview = (TextView)findViewById(R.id.addreview);
         rating = (TextView)findViewById(R.id.mainRatingPoint);
         reviewers = (TextView)findViewById(R.id.mainRatingReviewers);
         pieChart = (PieChart) findViewById(R.id.mainRatingPie);
@@ -69,11 +70,11 @@ public class Activity_Info extends Activity {
         LinearLayoutManager layoutReview = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerReview.setLayoutManager(layoutReview);
 
-        TextView addreview = (TextView)findViewById(R.id.addreview);
         addreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Activity_Info.this, Dialog_Review.class);
+                intent.putExtra("topic_id", get_id);
                 startActivity(intent);
             }
         });
