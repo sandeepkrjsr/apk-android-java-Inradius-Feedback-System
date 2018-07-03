@@ -32,8 +32,8 @@ public class Activity_Info extends Activity {
 
     private String get_id, get_topic, get_desc, get_rating, get_reviewers;
 
-    static String DATA_INFO = "http://kiitecell.hol.es/Inradius_topic_fetch.php";
-    static String DATA_REVIEW = "http://kiitecell.hol.es/Inradius_review_all.php";
+    static String DATA_INFO = "http://kiitecell.hol.es/Inradius_topics.php?action=fetch";
+    static String DATA_REVIEW = "http://kiitecell.hol.es/Inradius_reviews.php?action=fetch";
     static String DATA_QUALITY = "http://kiitecell.hol.es/Inradius_quality_all.php";
 
     @Override
@@ -80,7 +80,7 @@ public class Activity_Info extends Activity {
     }
 
     private void Info_getData(String id) {
-        String url = DATA_INFO + "?id=" + id;
+        String url = DATA_INFO + "&id=" + id;
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -97,7 +97,7 @@ public class Activity_Info extends Activity {
     private void Info_showJSON(String response){
         try {
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray("result");
+            JSONArray result = jsonObject.getJSONArray("report");
             JSONObject get_data = result.getJSONObject(0);
 
             get_topic = get_data.getString("topic");
@@ -118,7 +118,7 @@ public class Activity_Info extends Activity {
     }
 
     private void Review_getData(String id) {
-        String url = DATA_REVIEW + "?id=" + id;
+        String url = DATA_REVIEW + "&id=" + id;
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -135,7 +135,7 @@ public class Activity_Info extends Activity {
     private void Review_showJSON(String response){
         try {
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray("result");
+            JSONArray result = jsonObject.getJSONArray("report");
 
             for (int i = 0; i < result.length(); i++){
                 JSONObject get_data = result.getJSONObject(i);

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -33,7 +34,7 @@ public class Activity_Dashboard extends Activity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    static String DATA_URL = "http://kiitecell.hol.es/Inradius_topic_all.php";
+    static String DATA_URL = "http://kiitecell.hol.es/Inradius_topics.php?action=read";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +52,6 @@ public class Activity_Dashboard extends Activity {
         recyclerView.setLayoutManager(layoutManager);
 
         getData();
-
     }
 
     private void getData() {
@@ -74,7 +74,7 @@ public class Activity_Dashboard extends Activity {
     private void showJSON(String response){
         try {
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray("result");
+            JSONArray result = jsonObject.getJSONArray("report");
 
             for (int i = 0; i < result.length(); i++){
                 JSONObject get_data = result.getJSONObject(i);

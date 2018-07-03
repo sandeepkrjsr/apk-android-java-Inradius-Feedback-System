@@ -1,6 +1,5 @@
 package com.kodexlabs.inradius;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,10 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+
+import com.kodexlabs.inradius.Main.Activity_Login;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -25,7 +24,6 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -41,7 +39,7 @@ public class Dialog_Topic_Add extends AppCompatActivity {
 
     private String id, topic, desc, maker , measure1, measure2, measure3, measure4, measure5;
 
-    static String DataParseUrl = "http://kiitecell.hol.es/Inradius_topic_add.php";
+    static String DataParseUrl = "http://kiitecell.hol.es/Inradius_topics.php?action=create";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

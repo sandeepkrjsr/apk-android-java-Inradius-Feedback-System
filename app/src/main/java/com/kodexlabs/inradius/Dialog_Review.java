@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.kodexlabs.inradius.Main.Activity_Login;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -53,7 +54,7 @@ public class Dialog_Review extends AppCompatActivity {
 
     private String get_topicid, id, topic_id, emp_id, emp_name, rated, commented;
 
-    static String DataParseUrl = "http://kiitecell.hol.es/Inradius_review_add.php";
+    static String DataParseUrl = "http://kiitecell.hol.es/Inradius_reviews.php?action=create";
     static String DATA_QUALITY = "http://kiitecell.hol.es/Inradius_quality_all.php";
 
     @Override
@@ -64,7 +65,7 @@ public class Dialog_Review extends AppCompatActivity {
         Intent bundle = getIntent();
         get_topicid = bundle.getStringExtra("topic_id");
 
-        ratingBar = (RatingBar) findViewById(R.id.rating);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         comment = (EditText)findViewById(R.id.comment);
         anonymous = (CheckBox)findViewById(R.id.anonymous);
         next = (Button)findViewById(R.id.next);
@@ -82,6 +83,7 @@ public class Dialog_Review extends AppCompatActivity {
 
     public void Next(View view){
         ratingBar.setVisibility(View.GONE);
+        recyclerMeasure.setVisibility(View.GONE);
         comment.setVisibility(View.VISIBLE);
         anonymous.setVisibility(View.VISIBLE);
         next.setVisibility(View.GONE);

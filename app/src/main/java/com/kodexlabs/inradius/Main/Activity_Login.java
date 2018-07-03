@@ -1,10 +1,9 @@
-package com.kodexlabs.inradius;
+package com.kodexlabs.inradius.Main;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +13,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.kodexlabs.inradius.Activity_Dashboard;
+import com.kodexlabs.inradius.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +33,7 @@ public class Activity_Login extends Activity {
     public static String loggedin;
     public static String loggedname;
 
-    static String DATA_URL = "http://kiitecell.hol.es/Inradius_employee_login.php";
+    static String DATA_URL = "http://kiitecell.hol.es/Inradius_login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

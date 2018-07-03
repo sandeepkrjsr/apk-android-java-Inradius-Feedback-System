@@ -7,14 +7,14 @@
     android:background="@color/white">
 
     <RatingBar
-        android:id="@+id/rating"
+        android:id="@+id/ratingBar"
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
         android:layout_margin="20dp"
         android:layout_gravity="center"
-        android:isIndicator="true"/>
+        android:isIndicator="false"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerMeasure"
         android:layout_width="match_parent"

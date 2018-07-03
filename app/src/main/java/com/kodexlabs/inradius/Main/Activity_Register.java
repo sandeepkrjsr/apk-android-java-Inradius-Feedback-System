@@ -1,10 +1,13 @@
-package com.kodexlabs.inradius;
+package com.kodexlabs.inradius.Main;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Toast;
+
+import com.kodexlabs.inradius.R;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -52,6 +55,8 @@ public class Activity_Register extends Activity {
         //    facebook_login();
         //else
         //    nextActivity(loggedin);
+        getFacebookData();
+        //Toast.makeText(getBaseContext(),"jj",Toast.LENGTH_SHORT).show();
     }
 
     public void Login(View view){
@@ -60,8 +65,8 @@ public class Activity_Register extends Activity {
 
     private void getFacebookData() {
         try {
-            id = "127";
-            name = "Nehal";
+            id = "128";
+            name = "Pradeep";
             email = "radius@gmail.com";
             pass = "M";
             level = "dd/mm/yyyy";
