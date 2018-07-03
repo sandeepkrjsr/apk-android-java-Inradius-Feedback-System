@@ -19,17 +19,11 @@
             android:orientation="vertical"
             android:padding="8dp"
             android:background="@color/white">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Statistics"
-                android:textSize="24dp"
-                android:paddingLeft="16dp"/>
             <include layout="@layout/layout_stats"/>
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:id="@+id/recyclerQuality">
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
@@ -44,7 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Reviews"
-                android:textSize="24dp"
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
                 android:paddingLeft="16dp"/>
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"

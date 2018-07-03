@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 
 import com.android.volley.RequestQueue;
@@ -43,14 +42,19 @@ import java.util.List;
 
 public class Dialog_Review extends AppCompatActivity {
 
-    private RatingBar rating;
+    private RatingBar ratingBar;
     private EditText comment;
     private CheckBox anonymous;
     private Button next, submit;
+    private RecyclerView recyclerMeasure;
+
+    private List<String> arrayMeasure;
+    private List<Float> arrayRates;
 
     private String get_topicid, id, topic_id, emp_id, emp_name, rated, commented;
 
     static String DataParseUrl = "http://kiitecell.hol.es/Inradius_review_add.php";
+    static String DATA_QUALITY = "http://kiitecell.hol.es/Inradius_quality_all.php";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,15 +64,24 @@ public class Dialog_Review extends AppCompatActivity {
         Intent bundle = getIntent();
         get_topicid = bundle.getStringExtra("topic_id");
 
-        rating = (RatingBar) findViewById(R.id.rating);
+        ratingBar = (RatingBar) findViewById(R.id.rating);
         comment = (EditText)findViewById(R.id.comment);
         anonymous = (CheckBox)findViewById(R.id.anonymous);
         next = (Button)findViewById(R.id.next);
         submit = (Button)findViewById(R.id.submit);
+        recyclerMeasure = (RecyclerView) findViewById(R.id.recyclerMeasure);
+
+        arrayMeasure = new ArrayList<>();
+        arrayRates = new ArrayList<>();
+
+        LinearLayoutManager layoutMeasure = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerMeasure.setLayoutManager(layoutMeasure);
+
+        Rating_getData(get_topicid);
     }
 
     public void Next(View view){
-        rating.setVisibility(View.GONE);
+        ratingBar.setVisibility(View.GONE);
         comment.setVisibility(View.VISIBLE);
         anonymous.setVisibility(View.VISIBLE);
         next.setVisibility(View.GONE);
@@ -77,7 +90,9 @@ public class Dialog_Review extends AppCompatActivity {
 
     public void Submit(View view){
         getData();
-        finish();
+        Intent intent = new Intent(getBaseContext(), Activity_Info.class);
+        intent.putExtra("topic_id", get_topicid);
+        startActivity(intent);
     }
 
     private void getData() {
@@ -85,7 +100,7 @@ public class Dialog_Review extends AppCompatActivity {
             topic_id = get_topicid;
             emp_id = Activity_Login.loggedin;
             emp_name = Activity_Login.loggedname;
-            rated = ""+rating.getRating();
+            rated = ""+ratingBar.getRating();
             commented = comment.getText().toString();
             id = topic_id + emp_id;
 
@@ -95,7 +110,6 @@ public class Dialog_Review extends AppCompatActivity {
             SendDataToServer(id, topic_id, emp_id, emp_name, rated, commented);
         } catch (Exception e) {}
     }
-
     private void SendDataToServer(final String id, final String topic_id, final String emp_id, final String emp_name, final String rated, final String commented){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
@@ -125,5 +139,37 @@ public class Dialog_Review extends AppCompatActivity {
         }
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
         sendPostReqAsyncTask.execute(id, topic_id, emp_id, emp_name, rated, commented);
+    }
+
+    private void Rating_getData(String id) {
+        String url = DATA_QUALITY + "?id=" + id;
+        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Rating_showJSON(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+    private void Rating_showJSON(String response){
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray result = jsonObject.getJSONArray("result");
+
+            for (int i = 0; i < result.length(); i++){
+                JSONObject get_data = result.getJSONObject(i);
+                arrayMeasure.add(get_data.getString("measure"));
+                arrayRates.add(0.0f);
+            }
+            Adapter_Measure adapter_measure = new Adapter_Measure(arrayMeasure, arrayRates);
+            recyclerMeasure.setAdapter(adapter_measure);
+
+        } catch (JSONException e) {
+        }
     }
 }

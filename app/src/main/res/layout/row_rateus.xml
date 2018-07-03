@@ -6,15 +6,17 @@
     android:gravity="center"
     android:padding="4dp">
     <TextView
-        android:id="@+id/quality"
+        android:id="@+id/measureName"
         android:layout_weight="0.5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quality"
         android:textSize="16dp" />
     <RatingBar
+        android:id="@+id/measureRateus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
-        style="?android:attr/ratingBarStyleSmall" />
+        style="?android:attr/ratingBarStyleIndicator"
+        android:isIndicator="false"/>
 </LinearLayout>

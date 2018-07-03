@@ -1,6 +1,7 @@
 package com.kodexlabs.inradius;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,10 +35,11 @@ import java.util.Random;
 
 public class Dialog_Topic_Add extends AppCompatActivity {
 
-    private EditText input_topic, input_desc;
+    private LinearLayout measures;
+    private EditText input_topic, input_desc, input_measure1, input_measure2, input_measure3, input_measure4, input_measure5;
     private Button next, submit;
 
-    private String id, topic, desc, maker;
+    private String id, topic, desc, maker , measure1, measure2, measure3, measure4, measure5;
 
     static String DataParseUrl = "http://kiitecell.hol.es/Inradius_topic_add.php";
 
@@ -48,6 +50,12 @@ public class Dialog_Topic_Add extends AppCompatActivity {
 
         input_topic = (EditText)findViewById(R.id.input_topic);
         input_desc = (EditText)findViewById(R.id.input_desc);
+        measures = (LinearLayout)findViewById(R.id.measures);
+        input_measure1 = (EditText)findViewById(R.id.input_measure1);
+        input_measure2 = (EditText)findViewById(R.id.input_measure2);
+        input_measure3 = (EditText)findViewById(R.id.input_measure3);
+        input_measure4 = (EditText)findViewById(R.id.input_measure4);
+        input_measure5 = (EditText)findViewById(R.id.input_measure5);
         next = (Button)findViewById(R.id.next);
         submit = (Button)findViewById(R.id.submit);
     }
@@ -55,15 +63,15 @@ public class Dialog_Topic_Add extends AppCompatActivity {
     public void Next(View view){
         input_topic.setVisibility(View.GONE);
         input_desc.setVisibility(View.GONE);
-        //comment.setVisibility(View.VISIBLE);
-        //anonymous.setVisibility(View.VISIBLE);
+        measures.setVisibility(View.VISIBLE);
         next.setVisibility(View.GONE);
         submit.setVisibility(View.VISIBLE);
     }
 
     public void Submit(View view){
         putData();
-        finish();
+        Intent intent = new Intent(getBaseContext(), Activity_Dashboard.class);
+        startActivity(intent);
     }
 
     private void putData() {
@@ -75,19 +83,33 @@ public class Dialog_Topic_Add extends AppCompatActivity {
         desc = input_desc.getText().toString();
         maker = Activity_Login.loggedin;
 
+        measure1 = input_measure1.getText().toString();
+        measure2 = input_measure2.getText().toString();
+        measure3 = input_measure3.getText().toString();
+        measure4 = input_measure4.getText().toString();
+        measure5 = input_measure5.getText().toString();
+
         if (!topic.isEmpty())
-            SendDataToServer(id, topic, desc, maker);
+            SendDataToServer(id, topic, desc, maker, measure1, measure2, measure3, measure4, measure5);
     }
 
-    private void SendDataToServer(final String id, final String topic, final String desc, final String maker){
+    private void SendDataToServer(final String id, final String topic, final String desc, final String maker, final String measure1, final String measure2, final String measure3, final String measure4, final String measure5){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
                 List<NameValuePair> data = new ArrayList<NameValuePair>();
+
                 data.add(new BasicNameValuePair("id", id));
                 data.add(new BasicNameValuePair("topic", topic));
                 data.add(new BasicNameValuePair("desc", desc));
                 data.add(new BasicNameValuePair("maker", maker));
+
+                data.add(new BasicNameValuePair("measure1", measure1));
+                data.add(new BasicNameValuePair("measure2", measure2));
+                data.add(new BasicNameValuePair("measure3", measure3));
+                data.add(new BasicNameValuePair("measure4", measure4));
+                data.add(new BasicNameValuePair("measure5", measure5));
+
                 try {
                     HttpClient httpClient = new DefaultHttpClient();
                     HttpPost httpPost = new HttpPost(DataParseUrl);
@@ -106,6 +128,6 @@ public class Dialog_Topic_Add extends AppCompatActivity {
             }
         }
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
-        sendPostReqAsyncTask.execute(id, topic, desc, maker);
+        sendPostReqAsyncTask.execute(id, topic, desc, maker, measure1, measure2, measure3, measure4, measure5);
     }
 }

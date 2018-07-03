@@ -1,6 +1,7 @@
 package com.kodexlabs.inradius;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -36,7 +37,19 @@ public class Function_Pie extends Activity {
 
         pieDataSet = new PieDataSet(entries, "");
         pieData = new PieData(PieEntryLabels, pieDataSet);
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+//        pieDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+ //       pieDataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+
+
+
+        final int[] MY_COLORS = {Color.rgb(255, 207, 64), Color.rgb(249, 246, 218)};
+//        final int[] MY_COLORS = {Color.BLACK, Color.CYAN};
+//        final int[] MY_COLORS = {R.color.colorPrimary, Color.GRAY};
+        ArrayList<Integer> colors = new ArrayList<Integer>();
+
+        for(int c: MY_COLORS) colors.add(c);
+
+        pieDataSet.setColors(colors);
         pieChart.setData(pieData);
         pieChart.animateY(3000);
 
@@ -45,4 +58,5 @@ public class Function_Pie extends Activity {
         pieChart.getLegend().setEnabled(false);
         pieChart.setDescription("");
     }
+
 }

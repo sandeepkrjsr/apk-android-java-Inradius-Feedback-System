@@ -30,6 +30,7 @@
             android:layout_toRightOf="@id/mainRatingPie"
             android:layout_marginLeft="16dp"
             android:layout_centerVertical="true"
+            android:textColor="@color/colorPrimaryDark"
             android:text="Excellent" />
         <TextView
             android:id="@+id/mainRatingReviewers"

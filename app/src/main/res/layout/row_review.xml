@@ -8,7 +8,7 @@
         android:id="@+id/reviewerImage"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/sk"
+        android:src="@drawable/img_sk"
         app:civ_border_color="#fff"
         app:civ_border_width="2dp"
         android:layout_marginRight="16dp"/>
@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/reviewerImage"
         android:text="Sandeep Kumar"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
     <RatingBar
         android:id="@+id/reviewerRating"
         style="?android:attr/ratingBarStyleSmall"

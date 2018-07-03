@@ -7,10 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 
@@ -24,9 +22,8 @@ class Adapter_Topic extends RecyclerView.Adapter<Adapter_Topic.ViewHolder> {
     Context context;
 
     private CardView card;
-    private TextView topic, desc;
+    private TextView topic, desc, rating;
     private PieChart pieChart;
-    private RatingBar rating;
 
     private List<String> arrayId, arrayTopic, arrayDesc, arrayRating;
 
@@ -37,8 +34,7 @@ class Adapter_Topic extends RecyclerView.Adapter<Adapter_Topic.ViewHolder> {
             card = (CardView) view.findViewById(R.id.card);
             topic = (TextView)view.findViewById(R.id.topicName);
             desc = (TextView)view.findViewById(R.id.topicDesc);
-            rating = (RatingBar)view.findViewById(R.id.topicRating);
-            pieChart = (PieChart)view.findViewById(R.id.topicPie);
+            rating = (TextView) view.findViewById(R.id.topicRating);
         }
     }
 
@@ -62,10 +58,7 @@ class Adapter_Topic extends RecyclerView.Adapter<Adapter_Topic.ViewHolder> {
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         topic.setText(arrayTopic.get(position));
         desc.setText(arrayDesc.get(position));
-        rating.setRating(Float.parseFloat(arrayRating.get(position)));
-
-        Function_Pie fp = new Function_Pie();
-        fp.makePie(pieChart, Float.parseFloat(arrayRating.get(position)));
+        rating.setText(arrayRating.get(position));
 
         card.setOnClickListener(new View.OnClickListener() {
             @Override
