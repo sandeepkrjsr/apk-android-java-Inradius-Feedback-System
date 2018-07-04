@@ -22,10 +22,8 @@
         <activity android:name=".Main.Activity_Register"/>
         <activity android:name=".Main.Activity_Dashboard"/>
 
-        <activity android:name=".General.Recycler_General"/>
         <activity android:name=".General.Activity_Info"/>
         <activity android:name=".Manager.Recycler_Manager"/>
-        <activity android:name=".Profile.Activity_Profile"/>
 
         <activity android:name=".General.Dialog_Topic"
             android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>

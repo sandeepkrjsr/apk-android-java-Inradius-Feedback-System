@@ -16,7 +16,7 @@ public class Fragment_Dummy extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_general, container, false);
+        View view = inflater.inflate(R.layout.recycler, container, false);
         return view;
     }
 }

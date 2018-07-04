@@ -2,20 +2,25 @@ package com.kodexlabs.inradius.General;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.kodexlabs.inradius.Main.Activity_Login;
 import com.kodexlabs.inradius.Main.Function_URL;
+import com.kodexlabs.inradius.Manager.Recycler_Manager;
 import com.kodexlabs.inradius.R;
 
 import org.json.JSONArray;
@@ -31,6 +36,7 @@ import java.util.List;
 
 public class Fragment_General extends Fragment {
 
+    private AppBarLayout gotoManager;
     private FloatingActionButton fab;
 
     private List<String> arrayId, arrayName, arrayDept, arrayPos;
@@ -47,6 +53,15 @@ public class Fragment_General extends Fragment {
         arrayName = new ArrayList<>();
         arrayDept = new ArrayList<>();
         arrayPos = new ArrayList<>();
+
+        gotoManager = (AppBarLayout) view.findViewById(R.id.app_bar);
+        gotoManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Recycler_Manager.class);
+                startActivity(intent);
+            }
+        });
 
         fab = (FloatingActionButton)view.findViewById(R.id.fab);
         fab.setVisibility(View.GONE);
@@ -74,7 +89,21 @@ public class Fragment_General extends Fragment {
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                showJSON(response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("report");
+
+                    for (int i = 0; i < result.length(); i++){
+                        JSONObject get_data = result.getJSONObject(i);
+
+                        arrayId.add(get_data.getString("id"));
+                        arrayName.add(get_data.getString("topic"));
+                        arrayPos.add(get_data.getString("desc"));
+                    }
+                    adapter = new Adapter_General(arrayId, arrayName, arrayPos);
+                    recyclerView.setAdapter(adapter);
+                } catch (JSONException e) {
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -83,22 +112,5 @@ public class Fragment_General extends Fragment {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
-    }
-    private void showJSON(String response){
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray("report");
-
-            for (int i = 0; i < result.length(); i++){
-                JSONObject get_data = result.getJSONObject(i);
-
-                arrayId.add(get_data.getString("id"));
-                arrayName.add(get_data.getString("topic"));
-                arrayPos.add(get_data.getString("desc"));
-            }
-            adapter = new Adapter_General(arrayId, arrayName, arrayPos);
-            recyclerView.setAdapter(adapter);
-        } catch (JSONException e) {
-        }
     }
 }

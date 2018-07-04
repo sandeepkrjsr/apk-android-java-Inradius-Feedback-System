@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.kodexlabs.inradius.General.Fragment_General;
+import com.kodexlabs.inradius.Profile.Fragment_Profile;
 import com.kodexlabs.inradius.R;
 
 import java.lang.reflect.Field;
@@ -129,7 +130,7 @@ public class Activity_Dashboard extends AppCompatActivity {
                     Fragment_Dummy tab2 = new Fragment_Dummy();
                     return tab2;
                 case 3:
-                    Fragment_Dummy tab3 = new Fragment_Dummy();
+                    Fragment_Profile tab3 = new Fragment_Profile();
                     return tab3;
                 default:
                 return null;
