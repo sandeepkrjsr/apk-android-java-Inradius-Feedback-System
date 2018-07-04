@@ -14,7 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.kodexlabs.inradius.Dialog_Topic_Add;
+import com.kodexlabs.inradius.General.Dialog_Topic;
 import com.kodexlabs.inradius.Main.Activity_Login;
 import com.kodexlabs.inradius.Main.Function_URL;
 import com.kodexlabs.inradius.R;
@@ -97,7 +97,7 @@ public class Recycler_Manager extends AppCompatActivity {
     }
 
     public void Topic(View view){
-        Intent intent = new Intent(getBaseContext(), Dialog_Topic_Add.class);
+        Intent intent = new Intent(getBaseContext(), Dialog_Topic.class);
         startActivity(intent);
     }
 }

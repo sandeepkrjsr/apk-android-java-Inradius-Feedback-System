@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/feedback"
+        android:enabled="true"
+        android:icon="@drawable/ic_feedback"
+        android:title="Feedback"
+        app:showAsAction="ifRoom">
+    </item>
+    <item android:title="Discussions"
+        android:icon="@drawable/ic_group"
+        android:id="@+id/discussion"
+        android:enabled="true"
+        app:showAsAction="ifRoom">
+    </item>
+    <item android:title="Subscriptions"
+        android:enabled="true"
+        android:icon="@drawable/ic_bell"
+        app:showAsAction="ifRoom"
+        android:id="@+id/subscriptions">
+    </item>
+    <item android:title="Profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_person"
+        app:showAsAction="ifRoom"
+        android:id="@+id/profile">
+    </item>
+</menu>

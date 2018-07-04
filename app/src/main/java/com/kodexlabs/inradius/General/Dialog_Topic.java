@@ -1,4 +1,4 @@
-package com.kodexlabs.inradius;
+package com.kodexlabs.inradius.General;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.kodexlabs.inradius.Main.Activity_Login;
+import com.kodexlabs.inradius.Main.Function_URL;
+import com.kodexlabs.inradius.R;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -31,7 +33,7 @@ import java.util.Random;
  * Created by 1505560 on 01-Jul-18.
  */
 
-public class Dialog_Topic_Add extends AppCompatActivity {
+public class Dialog_Topic extends AppCompatActivity {
 
     private LinearLayout measures;
     private EditText input_topic, input_desc, input_measure1, input_measure2, input_measure3, input_measure4, input_measure5;
@@ -39,13 +41,12 @@ public class Dialog_Topic_Add extends AppCompatActivity {
 
     private String id, topic, desc, maker , measure1, measure2, measure3, measure4, measure5;
 
-    static String DataTopicUrl = "http://kiitecell.hol.es/Inradius_topics.php?action=create";
-    static String DataQualityUrl = "http://kiitecell.hol.es/Inradius_qualities.php?action=create";
+    private String url_topic, url_quality;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_topic_add);
+        setContentView(R.layout.dialog_topic);
         setTitle("Add Topic");
 
         input_topic = (EditText)findViewById(R.id.input_topic);
@@ -70,13 +71,13 @@ public class Dialog_Topic_Add extends AppCompatActivity {
 
     public void Submit(View view){
         putData();
-        Intent intent = new Intent(getBaseContext(), Activity_Dashboard.class);
+        Intent intent = new Intent(getBaseContext(), Recycler_General.class);
         startActivity(intent);
     }
 
     private void putData() {
         Random random = new Random();
-        int number = 999 + random.nextInt(9000);
+        int number = 99 + random.nextInt(900);
 
         id = ""+number;
         topic = input_topic.getText().toString();
@@ -90,12 +91,15 @@ public class Dialog_Topic_Add extends AppCompatActivity {
         measure5 = input_measure5.getText().toString();
 
         if (!topic.isEmpty()){
-            SendDataToTopic(id, topic, desc, maker);
-            SendDataToQuality(id, topic, measure1, measure2, measure3, measure4, measure5);
+            Function_URL f_url = new Function_URL();
+            url_topic = f_url.DATA_TOPICS + f_url.ACTION_CREATE;
+            Topic_sendData(id, topic, desc, maker);
+            url_quality = f_url.DATA_QUALITIES + f_url.ACTION_CREATE;
+            Quality_sendData(id, topic, measure1, measure2, measure3, measure4, measure5);
         }
     }
 
-    private void SendDataToTopic(final String id, final String topic, final String desc, final String maker){
+    private void Topic_sendData(final String id, final String topic, final String desc, final String maker){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
@@ -106,7 +110,7 @@ public class Dialog_Topic_Add extends AppCompatActivity {
                 data.add(new BasicNameValuePair("maker", maker));
                 try {
                     HttpClient httpClient = new DefaultHttpClient();
-                    HttpPost httpPost = new HttpPost(DataTopicUrl);
+                    HttpPost httpPost = new HttpPost(url_topic);
                     httpPost.setEntity(new UrlEncodedFormEntity(data));
                     HttpResponse response = httpClient.execute(httpPost);
                     HttpEntity entity = response.getEntity();
@@ -124,7 +128,7 @@ public class Dialog_Topic_Add extends AppCompatActivity {
         sendPostReqAsyncTask.execute(id, topic, desc, maker);
     }
 
-    private void SendDataToQuality(final String id, final String topic, final String measure1, final String measure2, final String measure3, final String measure4, final String measure5){
+    private void Quality_sendData(final String id, final String topic, final String measure1, final String measure2, final String measure3, final String measure4, final String measure5){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
@@ -138,7 +142,7 @@ public class Dialog_Topic_Add extends AppCompatActivity {
                 data.add(new BasicNameValuePair("measure5", measure5));
                 try {
                     HttpClient httpClient = new DefaultHttpClient();
-                    HttpPost httpPost = new HttpPost(DataQualityUrl);
+                    HttpPost httpPost = new HttpPost(url_quality);
                     httpPost.setEntity(new UrlEncodedFormEntity(data));
                     HttpResponse response = httpClient.execute(httpPost);
                     HttpEntity entity = response.getEntity();

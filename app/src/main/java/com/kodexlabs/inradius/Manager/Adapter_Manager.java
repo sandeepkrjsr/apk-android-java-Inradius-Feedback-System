@@ -60,7 +60,7 @@ class Adapter_Manager extends RecyclerView.Adapter<Adapter_Manager.ViewHolder> {
         /*card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, Activity_Info.class);
+                Intent intent = new Intent(context, Activity_Infom.class);
                 intent.putExtra("topic_id", arrayId.get(position));
                 context.startActivity(intent);
             }

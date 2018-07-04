@@ -13,7 +13,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.kodexlabs.inradius.Profile.Activity_Profile;
 import com.kodexlabs.inradius.R;
 
 import org.json.JSONArray;
@@ -104,7 +103,7 @@ public class Activity_Login extends Activity {
 
     private void nextActivity(String bundle){
         if(bundle != null){
-            Intent intent = new Intent(getBaseContext(), Activity_Profile.class);
+            Intent intent = new Intent(getBaseContext(), Activity_Dashboard.class);
             startActivity(intent);
             finish();
         }

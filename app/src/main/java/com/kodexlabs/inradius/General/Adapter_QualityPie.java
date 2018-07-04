@@ -1,4 +1,4 @@
-package com.kodexlabs.inradius;
+package com.kodexlabs.inradius.General;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.kodexlabs.inradius.Main.Function_Pie;
+import com.kodexlabs.inradius.R;
 
 import java.util.List;
 
@@ -16,15 +17,13 @@ import java.util.List;
  * Created by 1505560 on 10-Feb-18.
  */
 
-class Adapter_Pie extends RecyclerView.Adapter<Adapter_Pie.ViewHolder> {
+class Adapter_QualityPie extends RecyclerView.Adapter<Adapter_QualityPie.ViewHolder> {
     Context context;
 
     private PieChart pieChart;
     private TextView Quality, Rating;
 
     private List<String> arrayQuality, arrayRating;
-
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -36,7 +35,7 @@ class Adapter_Pie extends RecyclerView.Adapter<Adapter_Pie.ViewHolder> {
         }
     }
 
-    public Adapter_Pie(List<String> arrayQuality, List<String> arrayRating) {
+    public Adapter_QualityPie(List<String> arrayQuality, List<String> arrayRating) {
         this.arrayQuality = arrayQuality;
         this.arrayRating = arrayRating;
     }

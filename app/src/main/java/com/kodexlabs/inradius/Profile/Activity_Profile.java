@@ -1,7 +1,6 @@
 package com.kodexlabs.inradius.Profile;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +13,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.PieChart;
-import com.kodexlabs.inradius.Dialog_Review_Add;
 import com.kodexlabs.inradius.Main.Activity_Login;
 import com.kodexlabs.inradius.Main.Function_Pie;
 import com.kodexlabs.inradius.Main.Function_Review;
@@ -27,7 +25,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class Activity_Profile extends Activity {
 
@@ -43,7 +40,7 @@ public class Activity_Profile extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.review_main);
+        setContentView(R.layout.activity_info);
 
         topic = (TextView)findViewById(R.id.topic);
         desc = (TextView)findViewById(R.id.desc);

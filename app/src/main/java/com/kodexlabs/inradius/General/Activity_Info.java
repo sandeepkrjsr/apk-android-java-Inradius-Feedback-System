@@ -1,4 +1,4 @@
-package com.kodexlabs.inradius;
+package com.kodexlabs.inradius.General;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -16,6 +15,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.PieChart;
 import com.kodexlabs.inradius.Main.Function_Pie;
+import com.kodexlabs.inradius.Main.Function_Review;
+import com.kodexlabs.inradius.Main.Function_URL;
+import com.kodexlabs.inradius.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,14 +38,10 @@ public class Activity_Info extends Activity {
     private Float calc_rating = 0f;
     private int calc_percent = 0;
 
-    static String DATA_INFO = "http://kiitecell.hol.es/Inradius_topics.php?action=fetch";
-    static String DATA_REVIEW = "http://kiitecell.hol.es/Inradius_reviews.php?action=fetch";
-    static String DATA_QUALITY = "http://kiitecell.hol.es/Inradius_qualities.php?action=fetch";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.review_main);
+        setContentView(R.layout.activity_info);
 
         Intent bundle = getIntent();
         get_id = bundle.getStringExtra("topic_id");
@@ -65,10 +63,6 @@ public class Activity_Info extends Activity {
         arrayTotal = new ArrayList<>();
         array_calcRate = new ArrayList<>();
 
-        Info_getData(get_id);
-        Review_getData(get_id);
-        Rating_getData(get_id);
-
         LinearLayoutManager layoutQuality = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerQuality.setLayoutManager(layoutQuality);
 
@@ -78,20 +72,38 @@ public class Activity_Info extends Activity {
         addreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Info.this, Dialog_Review_Add.class);
+                Intent intent = new Intent(Activity_Info.this, Dialog_Review.class);
                 intent.putExtra("topic_id", get_id);
                 startActivity(intent);
                 finish();
             }
         });
+
+        Function_URL f_url = new Function_URL();
+        String url_info = f_url.DATA_TOPICS + f_url.ACTION_FETCH + "&id=" + get_id;
+        Info_getData(url_info);
+        String url_review = f_url.DATA_REVIEWS + f_url.ACTION_FETCH + "&id=" + get_id;
+        Review_getData(url_review);
+        String url_quality = f_url.DATA_QUALITIES + f_url.ACTION_FETCH + "&id=" + get_id;
+        Quality_getData(url_quality);
     }
 
-    private void Info_getData(String id) {
-        String url = DATA_INFO + "&id=" + id;
+    private void Info_getData(String url) {
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Info_showJSON(response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("report");
+                    JSONObject get_data = result.getJSONObject(0);
+
+                    get_topic = get_data.getString("topic");
+                    get_desc = get_data.getString("desc");
+
+                    topic.setText(get_topic);
+                    desc.setText(get_desc);
+                } catch (JSONException e) {
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -101,27 +113,33 @@ public class Activity_Info extends Activity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-    private void Info_showJSON(String response){
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray("report");
-            JSONObject get_data = result.getJSONObject(0);
 
-            get_topic = get_data.getString("topic");
-            get_desc = get_data.getString("desc");
-
-            topic.setText(get_topic);
-            desc.setText(get_desc);
-        } catch (JSONException e) {
-        }
-    }
-
-    private void Review_getData(String id) {
-        String url = DATA_REVIEW + "&id=" + id;
+    private void Review_getData(String url) {
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Review_showJSON(response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("report");
+
+                    for (int i = 0; i < result.length(); i++){
+                        JSONObject get_data = result.getJSONObject(i);
+
+                        arrayReviewer.add(get_data.getString("emp_name"));
+                        arrayRated.add(get_data.getString("rated"));
+                        arrayCommented.add(get_data.getString("commented"));
+
+                        calc_rating += Float.parseFloat(get_data.getString("rated"));
+                    }
+                    Function_Review adapter_review = new Function_Review(arrayReviewer, arrayCommented, arrayRated);
+                    recyclerReview.setAdapter(adapter_review);
+
+                    reviewers.setText(result.length()+" Reviews");
+                    rating.setText(Math.round((calc_rating / result.length()) * 10.0) / 10.0+"");
+                    Function_Pie fp = new Function_Pie();
+                    fp.makePie(pieChart, calc_rating / result.length());
+                } catch (JSONException e) {
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -131,37 +149,29 @@ public class Activity_Info extends Activity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-    private void Review_showJSON(String response){
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray("report");
 
-            for (int i = 0; i < result.length(); i++){
-                JSONObject get_data = result.getJSONObject(i);
-
-                arrayReviewer.add(get_data.getString("emp_name"));
-                arrayRated.add(get_data.getString("rated"));
-                arrayCommented.add(get_data.getString("commented"));
-
-                calc_rating += Float.parseFloat(get_data.getString("rated"));
-            }
-            Adapter_Review adapter_review = new Adapter_Review(arrayReviewer, arrayCommented, arrayRated);
-            recyclerReview.setAdapter(adapter_review);
-
-            reviewers.setText(result.length()+" Reviews");
-            rating.setText(Math.round((calc_rating / result.length()) * 10.0) / 10.0+"");
-            Function_Pie fp = new Function_Pie();
-            fp.makePie(pieChart, calc_rating / result.length());
-        } catch (JSONException e) {
-        }
-    }
-
-    private void Rating_getData(String id) {
-        String url = DATA_QUALITY + "&id=" + id;
+    private void Quality_getData(String url) {
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Rating_showJSON(response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray result = jsonObject.getJSONArray("report");
+
+                    for (int i = 0; i < result.length(); i++){
+                        JSONObject get_data = result.getJSONObject(i);
+
+                        arrayMeasure.add(get_data.getString("measure"));
+
+                        if (!get_data.getString("total").equals("0"))
+                            calc_percent = Integer.parseInt(get_data.getString("points"))*100/Integer.parseInt(get_data.getString("total"));
+                        array_calcRate.add(""+calc_percent);
+                    }
+                    Adapter_QualityPie adapter_qualityPie = new Adapter_QualityPie(arrayMeasure, array_calcRate);
+                    recyclerQuality.setAdapter(adapter_qualityPie);
+
+                } catch (JSONException e) {
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -170,24 +180,5 @@ public class Activity_Info extends Activity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
-    }
-    private void Rating_showJSON(String response){
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray("report");
-
-            for (int i = 0; i < result.length(); i++){
-                JSONObject get_data = result.getJSONObject(i);
-
-                arrayMeasure.add(get_data.getString("measure"));
-
-                calc_percent = Integer.parseInt(get_data.getString("points"))*100/Integer.parseInt(get_data.getString("total"));
-                array_calcRate.add(""+calc_percent);
-            }
-            Adapter_Pie adapter_pie = new Adapter_Pie(arrayMeasure, array_calcRate);
-            recyclerQuality.setAdapter(adapter_pie);
-
-        } catch (JSONException e) {
-        }
     }
 }

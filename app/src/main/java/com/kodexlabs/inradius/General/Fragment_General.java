@@ -2,12 +2,13 @@ package com.kodexlabs.inradius.General;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,10 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Niklaus on 26-Feb-17.
+ * Created by MadhuRima on 19-03-2017.
  */
 
-public class Recycler_General extends AppCompatActivity {
+public class Fragment_General extends Fragment {
 
     private FloatingActionButton fab;
 
@@ -39,26 +40,34 @@ public class Recycler_General extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.recycler);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_general, container, false);
 
         arrayId = new ArrayList<>();
         arrayName = new ArrayList<>();
         arrayDept = new ArrayList<>();
         arrayPos = new ArrayList<>();
 
-        fab = (FloatingActionButton)findViewById(R.id.fab);
-        //fab.setVisibility(View.GONE);
+        fab = (FloatingActionButton)view.findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Dialog_Topic.class);
+                startActivity(intent);
+            }
+        });
 
-        recyclerView = (RecyclerView)findViewById(R.id.recycler);
+        recyclerView = (RecyclerView)view.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getBaseContext());
+        layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         Function_URL f_url = new Function_URL();
         String url = f_url.DATA_TOPICS + f_url.ACTION_READ;
         getData(url);
+
+        return view;
     }
 
     private void getData(String url) {
@@ -72,7 +81,7 @@ public class Recycler_General extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
     }
     private void showJSON(String response){
@@ -91,10 +100,5 @@ public class Recycler_General extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
         } catch (JSONException e) {
         }
-    }
-
-    public void addNew(View view){
-        Intent intent = new Intent(getBaseContext(), Dialog_Topic.class);
-        startActivity(intent);
     }
 }

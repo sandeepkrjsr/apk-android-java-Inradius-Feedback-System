@@ -1,4 +1,4 @@
-package com.kodexlabs.inradius;
+package com.kodexlabs.inradius.General;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.kodexlabs.inradius.Main.Activity_Login;
+import com.kodexlabs.inradius.R;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -41,7 +42,7 @@ import java.util.List;
  * Created by 1505560 on 01-Jul-18.
  */
 
-public class Dialog_Review_Add extends AppCompatActivity {
+public class Dialog_Review extends AppCompatActivity {
 
     private RatingBar ratingBar;
     private EditText comment;
