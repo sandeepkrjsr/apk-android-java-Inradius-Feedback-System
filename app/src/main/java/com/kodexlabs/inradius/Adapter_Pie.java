@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.kodexlabs.inradius.Main.Function_Pie;
 
 import java.util.List;
 
@@ -53,9 +54,9 @@ class Adapter_Pie extends RecyclerView.Adapter<Adapter_Pie.ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Function_Pie fp = new Function_Pie();
-        fp.makePie(pieChart, Float.parseFloat(arrayRating.get(position)));
+        fp.makePie(pieChart, Float.parseFloat(arrayRating.get(position))/20);
         Quality.setText(arrayQuality.get(position));
-        Rating.setText(arrayRating.get(position));
+        Rating.setText(arrayRating.get(position)+"%");
     }
 
     @Override

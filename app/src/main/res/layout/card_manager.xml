@@ -28,28 +28,40 @@
                     android:padding="20dp"
                     android:id="@+id/imageView" />
                 <TextView
-                    android:id="@+id/topicName"
+                    android:id="@+id/emp_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/topicDesc"
-                    android:layout_alignStart="@+id/topicDesc"
+                    android:layout_alignLeft="@+id/emp_pos"
+                    android:layout_alignStart="@+id/emp_pos"
                     android:layout_alignTop="@+id/imageView"
                     android:layout_marginTop="30dp"
-                    android:text="Manager Feedback"
+                    android:text="Name"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15dp"
                     android:textStyle="bold" />
                 <TextView
-                    android:id="@+id/topicDesc"
+                    android:id="@+id/emp_pos"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/topicName"
+                    android:layout_below="@+id/emp_name"
                     android:layout_marginEnd="26dp"
                     android:layout_marginRight="26dp"
                     android:layout_marginTop="4dp"
                     android:layout_toLeftOf="@+id/imageView"
                     android:layout_toStartOf="@+id/imageView"
-                    android:text="Share your feelings about your manager"
+                    android:text="Position"
+                    android:textSize="10dp" />
+                <TextView
+                    android:id="@+id/emp_dept"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/emp_pos"
+                    android:layout_marginEnd="26dp"
+                    android:layout_marginRight="26dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toLeftOf="@+id/imageView"
+                    android:layout_toStartOf="@+id/imageView"
+                    android:text="Department"
                     android:textSize="10dp" />
             </RelativeLayout>
             <!--<View

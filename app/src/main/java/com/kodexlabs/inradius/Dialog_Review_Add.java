@@ -41,7 +41,7 @@ import java.util.List;
  * Created by 1505560 on 01-Jul-18.
  */
 
-public class Dialog_Review extends AppCompatActivity {
+public class Dialog_Review_Add extends AppCompatActivity {
 
     private RatingBar ratingBar;
     private EditText comment;
@@ -55,12 +55,13 @@ public class Dialog_Review extends AppCompatActivity {
     private String get_topicid, id, topic_id, emp_id, emp_name, rated, commented;
 
     static String DataParseUrl = "http://kiitecell.hol.es/Inradius_reviews.php?action=create";
-    static String DATA_QUALITY = "http://kiitecell.hol.es/Inradius_quality_all.php";
+    static String DATA_QUALITY = "http://kiitecell.hol.es/Inradius_qualities.php?action=fetch";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_review);
+        setTitle("Feedback");
 
         Intent bundle = getIntent();
         get_topicid = bundle.getStringExtra("topic_id");
@@ -95,6 +96,7 @@ public class Dialog_Review extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(), Activity_Info.class);
         intent.putExtra("topic_id", get_topicid);
         startActivity(intent);
+        finish();
     }
 
     private void getData() {
@@ -144,7 +146,7 @@ public class Dialog_Review extends AppCompatActivity {
     }
 
     private void Rating_getData(String id) {
-        String url = DATA_QUALITY + "?id=" + id;
+        String url = DATA_QUALITY + "&id=" + id;
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -161,7 +163,7 @@ public class Dialog_Review extends AppCompatActivity {
     private void Rating_showJSON(String response){
         try {
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray result = jsonObject.getJSONArray("result");
+            JSONArray result = jsonObject.getJSONArray("report");
 
             for (int i = 0; i < result.length(); i++){
                 JSONObject get_data = result.getJSONObject(i);

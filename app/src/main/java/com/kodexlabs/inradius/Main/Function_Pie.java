@@ -1,4 +1,4 @@
-package com.kodexlabs.inradius;
+package com.kodexlabs.inradius.Main;
 
 import android.app.Activity;
 import android.graphics.Color;

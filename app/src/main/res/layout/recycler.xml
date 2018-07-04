@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dashboard"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:padding="16dp"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.v7.widget.RecyclerView
         android:layout_weight="0.9"
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:background="@color/white">
     </android.support.v7.widget.RecyclerView>
-    <Button
-        android:id="@+id/addTopic"
-        android:layout_width="match_parent"
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Topic"
-        android:textColor="@color/white"
-        android:background="@color/blue"
-        android:onClick="Topic"/>
-</LinearLayout>
+        android:layout_alignEnd="@+id/recycler"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/recycler"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:srcCompat="@drawable/ic_add"/>
+</RelativeLayout>

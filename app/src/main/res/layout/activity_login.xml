@@ -7,7 +7,7 @@
     android:weightSum="1">
 
     <LinearLayout
-        android:layout_weight="0.1"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -24,7 +24,6 @@
             android:textSize="36dp"
             android:textColor="@color/blue"
             android:textStyle="bold"
-            android:fontFamily="@font/monserrat"
             android:paddingLeft="8dp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -32,7 +31,6 @@
             android:text="Login"
             android:textColor="@color/background"
             android:textStyle="bold"
-            android:fontFamily="@font/monserrat"
             android:paddingBottom="24dp"
             android:paddingLeft="8dp"/>
 
@@ -45,7 +43,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
-                android:fontFamily="@font/monserrat"
                 android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
@@ -57,22 +54,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:fontFamily="@font/monserrat"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/login"
-        android:layout_weight="0.9"
+    <LinearLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="SIGN IN"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:background="@color/blue"
-        android:fontFamily="@font/monserrat"
-        android:gravity="center"
-        android:onClick="Login"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:background="@color/blue">
+        <TextView
+            android:id="@+id/signin"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="SIGN IN"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:onClick="Signin"/>
+        <TextView
+            android:id="@+id/signup"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="SIGNUP"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:onClick="Signup"/>
+    </LinearLayout>
 
 </LinearLayout>

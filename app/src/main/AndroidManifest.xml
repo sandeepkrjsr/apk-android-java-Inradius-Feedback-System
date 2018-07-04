@@ -19,9 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Main.Activity_Register"/>
+
+        <activity android:name=".Manager.Recycler_Manager"/>
+        <activity android:name=".Profile.Activity_Profile"/>
         <activity android:name=".Activity_Dashboard"/>
         <activity android:name=".Activity_Info"/>
-        <activity android:name=".Dialog_Review"
+        <activity android:name=".Dialog_Review_Add"
             android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>
         <activity android:name=".Dialog_Topic_Add"
             android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>

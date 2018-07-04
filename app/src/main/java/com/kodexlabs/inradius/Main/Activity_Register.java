@@ -1,10 +1,13 @@
 package com.kodexlabs.inradius.Main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kodexlabs.inradius.R;
@@ -29,60 +32,53 @@ import java.util.List;
 
 public class Activity_Register extends Activity {
 
-    private String id, name, email, pass, level, dept;
+    private EditText emp_id, emp_name, emp_email, emp_pass, emp_level, emp_pos, emp_dept;
 
-    /*private static SharedPreferences preferences;
-    private String prefName = "MyPref";
-    private static final String UID = "UID";*/
+    private String id, name, email, pass, level, pos, dept;
 
-    static String DataParseUrl = "http://kiitecell.hol.es/Inradius_employee_add.php";
-
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }*/
+    static String DataParseUrl = "http://kiitecell.hol.es/Inradius_employees.php?action=create";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login2);
+        setContentView(R.layout.activity_register);
 
-        //preferences = getSharedPreferences(prefName, MODE_PRIVATE);
-        //String loggedin = preferences.getString(UID, "UID");
-
-        //if (loggedin.equals("UID"))
-        //    facebook_login();
-        //else
-        //    nextActivity(loggedin);
-        getFacebookData();
-        //Toast.makeText(getBaseContext(),"jj",Toast.LENGTH_SHORT).show();
+        emp_id = (EditText)findViewById(R.id.emp_id);
+        emp_name = (EditText)findViewById(R.id.emp_name);
+        emp_email = (EditText)findViewById(R.id.emp_email);
+        emp_pass = (EditText)findViewById(R.id.emp_pass);
+        emp_level = (EditText)findViewById(R.id.emp_level);
+        emp_pos = (EditText)findViewById(R.id.emp_pos);
+        emp_dept = (EditText)findViewById(R.id.emp_dept);
     }
 
-    public void Login(View view){
-        getFacebookData();
+    public void Register(View view){
+        putData();
     }
 
-    private void getFacebookData() {
+    private void putData() {
         try {
-            id = "128";
-            name = "Pradeep";
-            email = "radius@gmail.com";
-            pass = "M";
-            level = "dd/mm/yyyy";
-            dept = "dd/mm/yyyy";
+            id = emp_id.getText().toString();
+            name = emp_name.getText().toString();
+            email = emp_email.getText().toString();
+            pass = emp_pass.getText().toString();
+            level = emp_level.getText().toString();
+            pos = emp_pos.getText().toString();
+            dept = emp_dept.getText().toString();
 
-            /*SharedPreferences.Editor editor = preferences.edit();
-            editor.putString(UID, idFacebook);
-            editor.commit();*/
+            if (id.length()==5 && email.contains("@radius.com") && pass.length()>5){
+                SendDataToServer(id, name, email, pass, level, pos, dept);
 
-            SendDataToServer(id, name, email, pass, level, dept);
-            //nextActivity(idFacebook);
-
+                Activity_Login.userSaved(id, name, level);
+                Intent intent = new Intent(getBaseContext(), Activity_Login.class);
+                startActivity(intent);
+            }else {
+                Toast.makeText(getBaseContext(), "Incorrect Info",Toast.LENGTH_SHORT).show();
+            }
         } catch (Exception e) {}
     }
 
-    private void SendDataToServer(final String id, final String name, final String email, final String pass, final String level, final String dept){
+    private void SendDataToServer(final String id, final String name, final String email, final String pass, final String level, final String pos, final String dept){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
@@ -116,21 +112,4 @@ public class Activity_Register extends Activity {
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
         sendPostReqAsyncTask.execute(id, name, email, pass, level, dept);
     }
-
-    /*private void nextActivity(String bundle){
-        if(bundle != null){
-            Intent intent = new Intent(getBaseContext(), Activity_Main.class);
-            intent.putExtra("idFacebook", bundle);
-            startActivity(intent);
-            finish();
-        }
-    }*/
-
-    /*static void facebook_logout(){
-        LoginManager.getInstance().logOut();
-
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(UID, "UID");
-        editor.commit();
-    }*/
 }

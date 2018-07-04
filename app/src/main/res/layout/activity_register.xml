@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/emp_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="emp_id"
+        android:inputType="number"/>
+    <EditText
+        android:id="@+id/emp_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="name"/>
+    <EditText
+        android:id="@+id/emp_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="email"/>
+    <EditText
+        android:id="@+id/emp_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="password"/>
+    <EditText
+        android:id="@+id/emp_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="level"
+        android:inputType="number"/>
+    <EditText
+        android:id="@+id/emp_pos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="emp_position" />
+    <EditText
+        android:id="@+id/emp_dept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="dept"/>
+    <Button
+        android:id="@+id/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="Register"/>
+
+</LinearLayout>
