@@ -1,6 +1,9 @@
 package com.bleedcode.inradius.Profile;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,26 +12,44 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bleedcode.inradius.Main.Function_Image;
 import com.github.mikephil.charting.charts.PieChart;
 import com.bleedcode.inradius.Main.Activity_Login;
 import com.bleedcode.inradius.Main.Function_Pie;
 import com.bleedcode.inradius.Main.Function_Review;
 import com.bleedcode.inradius.Main.Function_URL;
 import com.bleedcode.inradius.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by MadhuRima on 19-03-2017.
@@ -37,27 +58,34 @@ import java.util.List;
 public class Fragment_Profile extends Fragment {
 
     private RecyclerView recyclerReview;
-    private TextView topic, desc, rating, reviewers, addreview;
+    private TextView topic, desc, rating, reviewers, button;
     private PieChart pieChart;
-    private Button logout;
+    private ImageView squareImage, circleImage;
 
     private List<String> arrayReviewer, arrayRated, arrayCommented;
 
     private String get_id, get_name, get_pos, get_dept;
     private Float calc_rating = 0f;
 
+    private Uri imguri = null;
+
+    private StorageReference storageReference;
+    private DatabaseReference databaseReference;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_profile, container, false);
+        //get_timestamp = new SimpleDateFormat("dd MMM yyyy").format(new Date());
 
         topic = (TextView)view.findViewById(R.id.topic);
         desc = (TextView)view.findViewById(R.id.desc);
-        addreview = (TextView)view.findViewById(R.id.addreview);
+        button = (TextView)view.findViewById(R.id.addreview);
         rating = (TextView)view.findViewById(R.id.mainRatingPoint);
         reviewers = (TextView)view.findViewById(R.id.mainRatingReviewers);
         pieChart = (PieChart)view.findViewById(R.id.mainRatingPie);
         recyclerReview = (RecyclerView)view.findViewById(R.id.recyclerReview);
-        logout = (Button) view.findViewById(R.id.logout);
+        circleImage = (ImageView)view.findViewById(R.id.circleImage);
+        squareImage = (ImageView)view.findViewById(R.id.squareImage);
 
         arrayReviewer = new ArrayList<>();
         arrayRated = new ArrayList<>();
@@ -66,16 +94,36 @@ public class Fragment_Profile extends Fragment {
         LinearLayoutManager layoutReview = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerReview.setLayoutManager(layoutReview);
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        squareImage.setVisibility(View.GONE);
+        circleImage.setVisibility(View.VISIBLE);
+        Function_Image.getImage(getContext(), circleImage, Activity_Login.loggedin);
+
+        button.setText("Logout");
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Activity_Login.logout();
-                Intent intent = new Intent(getContext(), Activity_Login.class);
-                startActivity(intent);
+                if (button.getText().equals("Logout")){
+                    Activity_Login.logout();
+                    Intent intent = new Intent(getContext(), Activity_Login.class);
+                    startActivity(intent);
+                }
+                if (button.getText().equals("Upload")) {
+                    Function_Image.postImage(getContext(), imguri, Activity_Login.loggedin);
+                    button.setText("Logout");
+                }
             }
         });
 
-        addreview.setVisibility(View.INVISIBLE);
+        circleImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent gallery = new Intent(Intent.ACTION_GET_CONTENT);
+                gallery.setType("image/*");
+                startActivityForResult(gallery, 1);
+
+                button.setText("Upload");
+            }
+        });
 
         Function_URL f_url = new Function_URL();
         String url_info = f_url.DATA_EMPLOYEES + f_url.ACTION_FETCH + "&id=" + Activity_Login.loggedin;
@@ -100,7 +148,7 @@ public class Fragment_Profile extends Fragment {
                     get_dept = get_data.getString("dept");
 
                     topic.setText(get_name);
-                    desc.setText(get_pos + "\n" + get_dept);
+                    desc.setText(get_pos + ", " + get_dept);
                 } catch (JSONException e) {
                 }
             }
@@ -147,5 +195,14 @@ public class Fragment_Profile extends Fragment {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            imguri = data.getData();
+            circleImage.setImageURI(imguri);
+        }
     }
 }

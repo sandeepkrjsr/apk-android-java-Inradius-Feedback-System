@@ -79,11 +79,6 @@
                 android:padding="8dp"
                 android:id="@+id/recyclerReview">
             </android.support.v7.widget.RecyclerView>
-            <Button
-                android:id="@+id/logout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Logout"/>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
