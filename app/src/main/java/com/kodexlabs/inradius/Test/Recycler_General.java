@@ -1,4 +1,4 @@
-package com.kodexlabs.inradius.General;
+package com.kodexlabs.inradius.Test;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.kodexlabs.inradius.General.Dialog_Topic;
 import com.kodexlabs.inradius.Main.Function_URL;
 import com.kodexlabs.inradius.R;
 

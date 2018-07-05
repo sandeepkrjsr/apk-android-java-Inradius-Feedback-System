@@ -1,23 +1,22 @@
-package com.kodexlabs.inradius.General;
+package com.kodexlabs.inradius.Discussion;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.kodexlabs.inradius.General.Dialog_Topic;
 import com.kodexlabs.inradius.Main.Activity_Login;
 import com.kodexlabs.inradius.Main.Function_URL;
 import com.kodexlabs.inradius.Manager.Recycler_Manager;
@@ -34,7 +33,7 @@ import java.util.List;
  * Created by MadhuRima on 19-03-2017.
  */
 
-public class Fragment_General extends Fragment {
+public class Fragment_Discussion extends Fragment {
 
     private AppBarLayout gotoManager;
     private FloatingActionButton fab;
@@ -47,33 +46,21 @@ public class Fragment_General extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_general, container, false);
+        View view = inflater.inflate(R.layout.recycler, container, false);
 
         arrayId = new ArrayList<>();
         arrayName = new ArrayList<>();
         arrayDept = new ArrayList<>();
         arrayPos = new ArrayList<>();
 
-        gotoManager = (AppBarLayout) view.findViewById(R.id.app_bar);
-        gotoManager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Recycler_Manager.class);
-                startActivity(intent);
-            }
-        });
-
         fab = (FloatingActionButton)view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Dialog_Topic.class);
+                Intent intent = new Intent(getContext(), Dialog_Create.class);
                 startActivity(intent);
             }
         });
-        fab.setVisibility(View.GONE);
-        if (Activity_Login.loggedlevel.equals("0"))
-            fab.setVisibility(View.VISIBLE);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
@@ -99,13 +86,13 @@ public class Fragment_General extends Fragment {
                     for (int i = 0; i < result.length(); i++){
                         JSONObject get_data = result.getJSONObject(i);
 
-                        if (get_data.getString("id").length()==3){
+                        if (get_data.getString("id").length()==4){
                             arrayId.add(get_data.getString("id"));
                             arrayName.add(get_data.getString("topic"));
                             arrayPos.add(get_data.getString("desc"));
                         }
                     }
-                    adapter = new Adapter_General(arrayId, arrayName, arrayPos);
+                    adapter = new Adapter_Discussion(arrayId, arrayName, arrayPos);
                     recyclerView.setAdapter(adapter);
                 } catch (JSONException e) {
                 }

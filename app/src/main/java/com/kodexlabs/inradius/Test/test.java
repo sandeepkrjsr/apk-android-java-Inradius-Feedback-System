@@ -1,10 +1,12 @@
-package com.kodexlabs.inradius;
+package com.kodexlabs.inradius.Test;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+
+import com.kodexlabs.inradius.R;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

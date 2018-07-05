@@ -57,6 +57,9 @@ public class Function_Review extends RecyclerView.Adapter<Function_Review.ViewHo
         user.setText(arrayUser.get(position));
         comment.setText(arrayComment.get(position));
         rated.setRating(Float.parseFloat(arrayRated.get(position)));
+
+        if (arrayRated.get(position).equals("0.0"))
+            rated.setVisibility(View.GONE);
     }
 
     @Override

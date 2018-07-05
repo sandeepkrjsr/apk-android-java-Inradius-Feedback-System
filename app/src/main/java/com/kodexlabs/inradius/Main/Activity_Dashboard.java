@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.kodexlabs.inradius.Discussion.Fragment_Discussion;
 import com.kodexlabs.inradius.General.Fragment_General;
 import com.kodexlabs.inradius.Profile.Fragment_Profile;
 import com.kodexlabs.inradius.R;
@@ -124,7 +125,7 @@ public class Activity_Dashboard extends AppCompatActivity {
                     Fragment_General tab0 = new Fragment_General();
                     return tab0;
                 case 1:
-                    Fragment_Dummy tab1 = new Fragment_Dummy();
+                    Fragment_Discussion tab1 = new Fragment_Discussion();
                     return tab1;
                 case 2:
                     Fragment_Dummy tab2 = new Fragment_Dummy();

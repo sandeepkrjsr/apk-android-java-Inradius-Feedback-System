@@ -1,4 +1,4 @@
-package com.kodexlabs.inradius.Profile;
+package com.kodexlabs.inradius.Test;
 
 import android.app.Activity;
 import android.os.Bundle;

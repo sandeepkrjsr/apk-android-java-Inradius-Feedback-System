@@ -114,7 +114,7 @@ public class Activity_Login extends Activity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(UID, get_id);
         editor.putString(USER, get_name);
-        editor.putString(USER, get_level);
+        editor.putString(LEVEL, get_level);
         editor.commit();
     }
 

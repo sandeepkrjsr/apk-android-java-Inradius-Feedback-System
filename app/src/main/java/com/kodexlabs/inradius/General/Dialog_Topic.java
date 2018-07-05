@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.kodexlabs.inradius.Main.Activity_Dashboard;
 import com.kodexlabs.inradius.Main.Activity_Login;
 import com.kodexlabs.inradius.Main.Function_URL;
 import com.kodexlabs.inradius.R;
@@ -71,8 +72,9 @@ public class Dialog_Topic extends AppCompatActivity {
 
     public void Submit(View view){
         putData();
-        Intent intent = new Intent(getBaseContext(), Recycler_General.class);
+        Intent intent = new Intent(getBaseContext(), Activity_Dashboard.class);
         startActivity(intent);
+        finish();
     }
 
     private void putData() {
