@@ -25,50 +25,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentTop="true"
-                android:padding="24dp">
-                <TextView
-                    android:id="@+id/topic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ask Me Something?"
-                    android:textSize="25dp"
-                    android:textColor="@color/colorAccent"
-                    android:textStyle="bold"/>
+                android:orientation="vertical">
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/desc"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/grey"
-                        android:text="Asked by" />
-                    <TextView
-                        android:id="@+id/replied"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/grey"
-                        android:text="0 Replied"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/layout_header"/>
                 </LinearLayout>
-                <Button
-                    android:id="@+id/addreply"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:text="Give Reply"
-                    android:textStyle="bold"
-                    android:background="@drawable/circle_button"
-                    android:textColor="@color/white"
-                    android:padding="15dp"
-                    android:textScaleX="1.1"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="2dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    android:background="@color/white">
+                    <include layout="@layout/layout_stats"/>
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:id="@+id/recyclerQuality">
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
             </LinearLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -92,7 +68,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Repiles"
+                android:text="Reviews"
                 android:textSize="15dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:paddingLeft="16dp"
@@ -101,8 +77,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:id="@+id/recyclerReply">
+                android:id="@+id/recyclerReview">
             </android.support.v7.widget.RecyclerView>
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"/>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
