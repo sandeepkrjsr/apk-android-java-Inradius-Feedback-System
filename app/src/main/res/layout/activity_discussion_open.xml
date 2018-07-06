@@ -63,7 +63,7 @@
                     android:layout_height="45dp"
                     android:text="Give Reply"
                     android:textStyle="bold"
-                    android:background="@drawable/circle_button"
+                    android:background="@drawable/circle_button_solidfill"
                     android:textColor="@color/white"
                     android:padding="15dp"
                     android:textScaleX="1.1"

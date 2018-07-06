@@ -18,7 +18,7 @@
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="italic" />
 
-    <!--<LinearLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -27,7 +27,7 @@
             android:layout_width="100dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/pnglogo"
+            android:src="@drawable/img_logo"
 
             android:layout_marginBottom="70dp"
 
@@ -37,12 +37,12 @@
             android:layout_width="120dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/inradiuslogo"
+            android:src="@drawable/img_text"
             android:id="@+id/imageview"
             android:layout_marginBottom="70dp"
 
 
             android:layout_height="180dp" />
-    </LinearLayout>-->
+    </LinearLayout>
 
 </RelativeLayout>

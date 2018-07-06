@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bleedcode.inradius.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +37,9 @@ public class Function_Image {
                 Map<String, String> map = (Map<String, String>) dataSnapshot.getValue();
                 get_poster = map.get(path);
                 Picasso.with(context).load(get_poster).into(image);
+
+                /*if (get_poster.compareTo("null")==0)
+                    image.setImageDrawable(context.getResources().getDrawable(R.drawable.img_user));*/
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

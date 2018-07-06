@@ -35,7 +35,7 @@ import java.util.Random;
 
 public class Dialog_Create extends AppCompatActivity {
 
-    private EditText input_topic;
+    private EditText input_discuss;
     private CheckBox anonymous;
 
     private String id, topic, desc, maker;
@@ -48,7 +48,7 @@ public class Dialog_Create extends AppCompatActivity {
         setContentView(R.layout.dialog_discussion);
         setTitle("Ask Question");
 
-        input_topic = (EditText)findViewById(R.id.input_topic);
+        input_discuss = (EditText)findViewById(R.id.input_discuss);
         anonymous = (CheckBox)findViewById(R.id.anonymous);
     }
 
@@ -64,7 +64,7 @@ public class Dialog_Create extends AppCompatActivity {
         int number = 999 + random.nextInt(9000);
 
         id = ""+number;
-        topic = input_topic.getText().toString();
+        topic = input_discuss.getText().toString();
         desc = Activity_Login.loggedname;
         maker = Activity_Login.loggedin;
 

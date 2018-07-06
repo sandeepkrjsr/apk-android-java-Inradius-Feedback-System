@@ -7,7 +7,7 @@
     android:background="@color/white">
 
     <EditText
-        android:id="@+id/input_reply"
+        android:id="@+id/input_discuss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textCapSentences"

@@ -7,8 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bleedcode.inradius.Main.Function_Image;
 import com.github.mikephil.charting.charts.PieChart;
 import com.bleedcode.inradius.R;
 
@@ -24,6 +26,7 @@ class Adapter_General extends RecyclerView.Adapter<Adapter_General.ViewHolder> {
     private CardView card;
     private TextView topic, desc;
     private PieChart pieChart;
+    private ImageView image;
 
     private List<String> arrayId, arrayTopic, arrayDesc;
 
@@ -34,6 +37,7 @@ class Adapter_General extends RecyclerView.Adapter<Adapter_General.ViewHolder> {
             card = (CardView) view.findViewById(R.id.card);
             topic = (TextView)view.findViewById(R.id.topicName);
             desc = (TextView)view.findViewById(R.id.topicDesc);
+            image = (ImageView)view.findViewById(R.id.image);
             //rating = (TextView) view.findViewById(R.id.topicRating);
         }
     }
@@ -59,6 +63,8 @@ class Adapter_General extends RecyclerView.Adapter<Adapter_General.ViewHolder> {
         topic.setText(arrayTopic.get(position));
         desc.setText(arrayDesc.get(position));
         //rating.setText(arrayRating.get(position));
+
+        Function_Image.getImage(context, image, arrayId.get(position));
 
         card.setOnClickListener(new View.OnClickListener() {
             @Override

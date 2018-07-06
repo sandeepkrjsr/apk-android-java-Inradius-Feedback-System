@@ -1,16 +1,22 @@
 package com.bleedcode.inradius.Manager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bleedcode.inradius.Main.Function_Image;
 import com.bleedcode.inradius.R;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by 1505560 on 10-Feb-18.
@@ -21,6 +27,8 @@ class Adapter_Manager extends RecyclerView.Adapter<Adapter_Manager.ViewHolder> {
 
     private CardView card;
     private TextView emp_name, emp_pos, emp_dept;
+    private CircleImageView emp_image;
+    //private Button givefeedback;
 
     private List<String> arrayId, arrayName, arrayPos, arrayDept;
 
@@ -32,6 +40,8 @@ class Adapter_Manager extends RecyclerView.Adapter<Adapter_Manager.ViewHolder> {
             emp_name = (TextView)view.findViewById(R.id.emp_name);
             emp_pos = (TextView)view.findViewById(R.id.emp_pos);
             emp_dept = (TextView) view.findViewById(R.id.emp_dept);
+            emp_image = (CircleImageView) view.findViewById(R.id.emp_image);
+            //givefeedback = (Button)view.findViewById(R.id.givefeedback);
         }
     }
 
@@ -57,14 +67,16 @@ class Adapter_Manager extends RecyclerView.Adapter<Adapter_Manager.ViewHolder> {
         emp_pos.setText(arrayPos.get(position));
         emp_dept.setText(arrayDept.get(position));
 
-        /*card.setOnClickListener(new View.OnClickListener() {
+        Function_Image.getImage(context, emp_image, arrayId.get(position));
+
+        card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, Activity_Infom.class);
+                Intent intent = new Intent(context, Dialog_Feedback.class);
                 intent.putExtra("topic_id", arrayId.get(position));
                 context.startActivity(intent);
             }
-        });*/
+        });
     }
 
     @Override

@@ -24,13 +24,14 @@
 
     <EditText
         android:id="@+id/comment"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textCapSentences"
+        android:inputType="textMultiLine"
         android:padding="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="20dp"
+        android:background="@color/white"/>
     <CheckBox
         android:id="@+id/anonymous"
         android:visibility="gone"

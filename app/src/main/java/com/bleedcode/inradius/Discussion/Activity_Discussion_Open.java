@@ -29,7 +29,7 @@ public class Activity_Discussion_Open extends Activity {
     private RecyclerView recyclerReply;
     private TextView topic, desc, replied, addreply;
 
-    private List<String> arrayReviewer, arrayRated, arrayCommented;
+    private List<String> arrayIds, arrayReviewer, arrayRated, arrayCommented;
 
     private String get_id, get_topic, get_desc;
 
@@ -47,6 +47,7 @@ public class Activity_Discussion_Open extends Activity {
         addreply = (TextView)findViewById(R.id.addreply);
         recyclerReply = (RecyclerView) findViewById(R.id.recyclerReply);
 
+        arrayIds = new ArrayList<>();
         arrayReviewer = new ArrayList<>();
         arrayRated = new ArrayList<>();
         arrayCommented = new ArrayList<>();
@@ -108,11 +109,12 @@ public class Activity_Discussion_Open extends Activity {
                     for (int i = 0; i < result.length(); i++){
                         JSONObject get_data = result.getJSONObject(i);
 
+                        arrayIds.add(get_data.getString("emp_id"));
                         arrayReviewer.add(get_data.getString("emp_name"));
                         arrayRated.add(get_data.getString("rated"));
                         arrayCommented.add(get_data.getString("commented"));
                     }
-                    Function_Review adapter_review = new Function_Review(arrayReviewer, arrayCommented, arrayRated);
+                    Function_Review adapter_review = new Function_Review(arrayIds, arrayReviewer, arrayCommented, arrayRated);
                     recyclerReply.setAdapter(adapter_review);
 
                     replied.setText("   |   " + result.length() + " Replied");

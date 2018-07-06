@@ -32,7 +32,7 @@ public class Activity_Info extends Activity {
     private TextView topic, desc, rating, reviewers, addreview;
     private PieChart pieChart;
 
-    private List<String> arrayReviewer, arrayRated, arrayCommented, arrayMeasure, arrayPoints, arrayTotal, array_calcRate;
+    private List<String> arrayIds, arrayReviewer, arrayRated, arrayCommented, arrayMeasure, arrayPoints, arrayTotal, array_calcRate;
 
     private String get_id, get_topic, get_desc;
     private Float calc_rating = 0f;
@@ -55,6 +55,7 @@ public class Activity_Info extends Activity {
         recyclerReview = (RecyclerView) findViewById(R.id.recyclerReview);
         recyclerQuality = (RecyclerView) findViewById(R.id.recyclerQuality);
 
+        arrayIds = new ArrayList<>();
         arrayReviewer = new ArrayList<>();
         arrayRated = new ArrayList<>();
         arrayCommented = new ArrayList<>();
@@ -124,13 +125,14 @@ public class Activity_Info extends Activity {
                     for (int i = 0; i < result.length(); i++){
                         JSONObject get_data = result.getJSONObject(i);
 
+                        arrayIds.add(get_data.getString("emp_id"));
                         arrayReviewer.add(get_data.getString("emp_name"));
                         arrayRated.add(get_data.getString("rated"));
                         arrayCommented.add(get_data.getString("commented"));
 
                         calc_rating += Float.parseFloat(get_data.getString("rated"));
                     }
-                    Function_Review adapter_review = new Function_Review(arrayReviewer, arrayCommented, arrayRated);
+                    Function_Review adapter_review = new Function_Review(arrayIds, arrayReviewer, arrayCommented, arrayRated);
                     recyclerReview.setAdapter(adapter_review);
 
                     reviewers.setText(result.length()+" Reviews");

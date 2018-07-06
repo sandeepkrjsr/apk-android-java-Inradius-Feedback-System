@@ -12,6 +12,8 @@ import com.bleedcode.inradius.R;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by 1505560 on 10-Feb-18.
  */
@@ -21,8 +23,9 @@ public class Function_Review extends RecyclerView.Adapter<Function_Review.ViewHo
 
     private RatingBar rated;
     private TextView user, comment;
+    private CircleImageView image;
 
-    private List<String> arrayUser, arrayComment, arrayRated;
+    private List<String> arrayIds, arrayUser, arrayComment, arrayRated;
 
     public void Function_Review(){}
 
@@ -34,10 +37,12 @@ public class Function_Review extends RecyclerView.Adapter<Function_Review.ViewHo
             user = (TextView) view.findViewById(R.id.reviewerName);
             comment = (TextView)view.findViewById(R.id.reviewerComment);
             rated = (RatingBar) view.findViewById(R.id.reviewerRating);
+            image = (CircleImageView)view.findViewById(R.id.reviewerImage);
         }
     }
 
-    public Function_Review(List<String> arrayUser, List<String> arrayComment, List<String> arrayRated) {
+    public Function_Review(List<String> arrayIds, List<String> arrayUser, List<String> arrayComment, List<String> arrayRated) {
+        this.arrayIds = arrayIds;
         this.arrayUser = arrayUser;
         this.arrayComment = arrayComment;
         this.arrayRated = arrayRated;
@@ -60,6 +65,10 @@ public class Function_Review extends RecyclerView.Adapter<Function_Review.ViewHo
 
         if (arrayRated.get(position).equals("0.0"))
             rated.setVisibility(View.GONE);
+
+        if (!arrayUser.get(position).equals("Anonymous"))
+            Function_Image.getImage(context, image, arrayIds.get(position));
+        //image.setImageDrawable(context.getResources().getDrawable(R.drawable.img_manager));
     }
 
     @Override

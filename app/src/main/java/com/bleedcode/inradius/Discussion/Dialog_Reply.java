@@ -34,7 +34,7 @@ import java.util.Random;
 
 public class Dialog_Reply extends AppCompatActivity {
 
-    private EditText input_reply;
+    private EditText input_discuss;
     private CheckBox anonymous;
 
     private String get_topicid, id, topic_id, emp_id, emp_name, rated, commented;
@@ -50,7 +50,7 @@ public class Dialog_Reply extends AppCompatActivity {
         Intent bundle = getIntent();
         get_topicid = bundle.getStringExtra("topic_id");
 
-        input_reply = (EditText)findViewById(R.id.input_reply);
+        input_discuss = (EditText)findViewById(R.id.input_discuss);
         anonymous = (CheckBox)findViewById(R.id.anonymous);
     }
 
@@ -71,7 +71,7 @@ public class Dialog_Reply extends AppCompatActivity {
             emp_id = Activity_Login.loggedin;
             emp_name = Activity_Login.loggedname;
             rated = "0.0";
-            commented = input_reply.getText().toString();
+            commented = input_discuss.getText().toString();
             id = topic_id + emp_id + number;
 
             if (anonymous.isChecked())

@@ -1,6 +1,7 @@
 package com.bleedcode.inradius.General;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,11 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bleedcode.inradius.Main.Activity_Dashboard;
 import com.bleedcode.inradius.Main.Activity_Login;
+import com.bleedcode.inradius.Main.Function_Image;
 import com.bleedcode.inradius.Main.Function_URL;
 import com.bleedcode.inradius.R;
 
@@ -39,12 +42,24 @@ public class Dialog_Topic extends AppCompatActivity {
 
     private LinearLayout measures;
     private EditText input_topic, input_desc, input_measure1, input_measure2, input_measure3, input_measure4, input_measure5;
+    private ImageView uploadimage;
     private Button next, submit;
 
     private String id, topic, desc, maker;
     private List<String> measure;
 
     private String url_topic, url_quality;
+
+    private Uri imguri = null;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            imguri = data.getData();
+            uploadimage.setImageURI(imguri);
+        }
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +70,7 @@ public class Dialog_Topic extends AppCompatActivity {
         input_topic = (EditText)findViewById(R.id.input_topic);
         input_desc = (EditText)findViewById(R.id.input_desc);
         measures = (LinearLayout)findViewById(R.id.measures);
+        uploadimage = (ImageView)findViewById(R.id.uploadimage);
         input_measure1 = (EditText)findViewById(R.id.input_measure1);
         input_measure2 = (EditText)findViewById(R.id.input_measure2);
         input_measure3 = (EditText)findViewById(R.id.input_measure3);
@@ -67,6 +83,7 @@ public class Dialog_Topic extends AppCompatActivity {
     }
 
     public void Next(View view){
+        uploadimage.setVisibility(View.GONE);
         input_topic.setVisibility(View.GONE);
         input_desc.setVisibility(View.GONE);
         measures.setVisibility(View.VISIBLE);
@@ -79,6 +96,12 @@ public class Dialog_Topic extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(), Activity_Dashboard.class);
         startActivity(intent);
         finish();
+    }
+
+    public void uploadImage(View view){
+        Intent gallery = new Intent(Intent.ACTION_GET_CONTENT);
+        gallery.setType("image/*");
+        startActivityForResult(gallery, 1);
     }
 
     private void putData() {
@@ -102,6 +125,8 @@ public class Dialog_Topic extends AppCompatActivity {
             Topic_sendData(id, topic, desc, maker);
             url_quality = f_url.DATA_QUALITIES + f_url.ACTION_CREATE;
             Quality_sendData(id, topic);
+
+            Function_Image.postImage(getBaseContext(), imguri, id);
         }
     }
 

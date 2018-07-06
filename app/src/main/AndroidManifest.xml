@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/inradius"
+        android:icon="@drawable/img_logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/inradius"
+        android:roundIcon="@drawable/img_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -34,6 +34,8 @@
         <activity android:name=".Discussion.Dialog_Create"
             android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>
         <activity android:name=".Discussion.Dialog_Reply"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>
+        <activity android:name=".Manager.Dialog_Feedback"
             android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>
 
     </application>

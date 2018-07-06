@@ -15,26 +15,25 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="129dp">
-                <ImageView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/emp_image"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="19dp"
-                    android:layout_marginRight="19dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/img_manager"
-                    android:padding="20dp"
-                    android:id="@+id/imageView" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_user" />
+
                 <TextView
                     android:id="@+id/emp_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/emp_pos"
                     android:layout_alignStart="@+id/emp_pos"
-                    android:layout_alignTop="@+id/imageView"
-                    android:layout_marginTop="30dp"
+                    android:layout_alignTop="@+id/emp_image"
                     android:text="Name"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15dp"
@@ -47,8 +46,8 @@
                     android:layout_marginEnd="26dp"
                     android:layout_marginRight="26dp"
                     android:layout_marginTop="4dp"
-                    android:layout_toLeftOf="@+id/imageView"
-                    android:layout_toStartOf="@+id/imageView"
+                    android:layout_toLeftOf="@+id/emp_image"
+                    android:layout_toStartOf="@+id/emp_image"
                     android:text="Position"
                     android:textSize="10dp" />
                 <TextView
@@ -59,10 +58,23 @@
                     android:layout_marginEnd="26dp"
                     android:layout_marginRight="26dp"
                     android:layout_marginTop="4dp"
-                    android:layout_toLeftOf="@+id/imageView"
-                    android:layout_toStartOf="@+id/imageView"
+                    android:layout_toLeftOf="@+id/emp_image"
+                    android:layout_toStartOf="@+id/emp_image"
                     android:text="Department"
                     android:textSize="10dp" />
+
+                <!--<Button
+                    android:id="@+id/givefeedback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/emp_pos"
+                    android:layout_alignRight="@+id/emp_pos"
+                    android:layout_alignTop="@+id/emp_pos"
+                    android:background="@drawable/circle_button_solidfill_yellow"
+                    android:padding="10dp"
+                    android:text="GIVE FEEDBACK"
+                    android:textColor="@color/white"
+                    android:textSize="10dp" />-->
             </RelativeLayout>
             <!--<View
                 android:layout_width="match_parent"

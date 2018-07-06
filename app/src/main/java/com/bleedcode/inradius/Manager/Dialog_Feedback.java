@@ -1,4 +1,4 @@
-package com.bleedcode.inradius.General;
+package com.bleedcode.inradius.Manager;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -19,6 +19,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bleedcode.inradius.General.Activity_Info;
+import com.bleedcode.inradius.General.Adapter_Measure;
 import com.bleedcode.inradius.Main.Activity_Login;
 import com.bleedcode.inradius.Main.Function_URL;
 import com.bleedcode.inradius.R;
@@ -44,7 +46,7 @@ import java.util.List;
  * Created by 1505560 on 01-Jul-18.
  */
 
-public class Dialog_Review extends AppCompatActivity {
+public class Dialog_Feedback extends AppCompatActivity {
 
     private RatingBar ratingBar;
     private EditText comment;
@@ -67,6 +69,8 @@ public class Dialog_Review extends AppCompatActivity {
 
         Intent bundle = getIntent();
         get_topicid = bundle.getStringExtra("topic_id");
+
+        Toast.makeText(getBaseContext(), "Hello", Toast.LENGTH_SHORT).show();
 
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         comment = (EditText)findViewById(R.id.comment);
@@ -97,10 +101,6 @@ public class Dialog_Review extends AppCompatActivity {
 
     public void Submit(View view){
         putData();
-        Intent intent = new Intent(getBaseContext(), Activity_Info.class);
-        intent.putExtra("topic_id", get_topicid);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
         finish();
     }
 
@@ -182,6 +182,19 @@ public class Dialog_Review extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void updateData(final String url, final String id){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
