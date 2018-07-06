@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bleedcode.inradius.Main.Activity_Dashboard;
 import com.bleedcode.inradius.Main.Activity_Login;
@@ -40,7 +41,8 @@ public class Dialog_Topic extends AppCompatActivity {
     private EditText input_topic, input_desc, input_measure1, input_measure2, input_measure3, input_measure4, input_measure5;
     private Button next, submit;
 
-    private String id, topic, desc, maker , measure1, measure2, measure3, measure4, measure5;
+    private String id, topic, desc, maker;
+    private List<String> measure;
 
     private String url_topic, url_quality;
 
@@ -60,6 +62,8 @@ public class Dialog_Topic extends AppCompatActivity {
         input_measure5 = (EditText)findViewById(R.id.input_measure5);
         next = (Button)findViewById(R.id.next);
         submit = (Button)findViewById(R.id.submit);
+
+        measure = new ArrayList<>();
     }
 
     public void Next(View view){
@@ -86,18 +90,18 @@ public class Dialog_Topic extends AppCompatActivity {
         desc = input_desc.getText().toString();
         maker = Activity_Login.loggedin;
 
-        measure1 = input_measure1.getText().toString();
-        measure2 = input_measure2.getText().toString();
-        measure3 = input_measure3.getText().toString();
-        measure4 = input_measure4.getText().toString();
-        measure5 = input_measure5.getText().toString();
+        measure.add(input_measure1.getText().toString());
+        measure.add(input_measure2.getText().toString());
+        measure.add(input_measure3.getText().toString());
+        measure.add(input_measure4.getText().toString());
+        measure.add(input_measure5.getText().toString());
 
         if (!topic.isEmpty()){
             Function_URL f_url = new Function_URL();
             url_topic = f_url.DATA_TOPICS + f_url.ACTION_CREATE;
             Topic_sendData(id, topic, desc, maker);
             url_quality = f_url.DATA_QUALITIES + f_url.ACTION_CREATE;
-            Quality_sendData(id, topic, measure1, measure2, measure3, measure4, measure5);
+            Quality_sendData(id, topic);
         }
     }
 
@@ -130,18 +134,17 @@ public class Dialog_Topic extends AppCompatActivity {
         sendPostReqAsyncTask.execute(id, topic, desc, maker);
     }
 
-    private void Quality_sendData(final String id, final String topic, final String measure1, final String measure2, final String measure3, final String measure4, final String measure5){
+    private void Quality_sendData(final String id, final String topic){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
                 List<NameValuePair> data = new ArrayList<NameValuePair>();
                 data.add(new BasicNameValuePair("id", id));
                 data.add(new BasicNameValuePair("topic", topic));
-                data.add(new BasicNameValuePair("measure1", measure1));
-                data.add(new BasicNameValuePair("measure2", measure2));
-                data.add(new BasicNameValuePair("measure3", measure3));
-                data.add(new BasicNameValuePair("measure4", measure4));
-                data.add(new BasicNameValuePair("measure5", measure5));
+                for (int i=0;i<measure.size();i++){
+                    if (!measure.get(i).isEmpty())
+                        data.add(new BasicNameValuePair("measure[]", measure.get(i)));
+                }
                 try {
                     HttpClient httpClient = new DefaultHttpClient();
                     HttpPost httpPost = new HttpPost(url_quality);
@@ -159,6 +162,6 @@ public class Dialog_Topic extends AppCompatActivity {
             }
         }
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
-        sendPostReqAsyncTask.execute(id, topic, measure1, measure2, measure3, measure4, measure5);
+        sendPostReqAsyncTask.execute(id, topic);
     }
 }

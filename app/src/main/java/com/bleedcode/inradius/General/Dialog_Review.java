@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -58,9 +59,6 @@ public class Dialog_Review extends AppCompatActivity {
 
     private String url_review, url_measure;
 
-    //static String DataParseUrl = "http://kiitecell.hol.es/Inradius_reviews.php?action=create";
-    //static String DATA_QUALITY = "http://kiitecell.hol.es/Inradius_qualities.php?action=fetch";
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +82,7 @@ public class Dialog_Review extends AppCompatActivity {
         recyclerMeasure.setLayoutManager(layoutMeasure);
 
         Function_URL f_url = new Function_URL();
-        url_measure = f_url.DATA_QUALITIES + f_url.ACTION_FETCH;
+        url_measure = f_url.DATA_QUALITIES + f_url.ACTION_FETCH + "&id=" + get_topicid;
         Measure_getData(url_measure);
     }
 
@@ -101,6 +99,7 @@ public class Dialog_Review extends AppCompatActivity {
         putData();
         Intent intent = new Intent(getBaseContext(), Activity_Info.class);
         intent.putExtra("topic_id", get_topicid);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
     }
@@ -120,6 +119,9 @@ public class Dialog_Review extends AppCompatActivity {
             Function_URL f_url = new Function_URL();
             url_review = f_url.DATA_REVIEWS + f_url.ACTION_CREATE;
             Review_sendData(id, topic_id, emp_id, emp_name, rated, commented);
+
+            String url = f_url.DATA_QUALITIES + f_url.ACTION_UPDATE;
+            updateData(url, topic_id);
         } catch (Exception e) {}
     }
     private void Review_sendData(final String id, final String topic_id, final String emp_id, final String emp_name, final String rated, final String commented){
@@ -166,7 +168,7 @@ public class Dialog_Review extends AppCompatActivity {
                         arrayMeasure.add(get_data.getString("measure"));
                         arrayRates.add(0.0f);
                     }
-                    Adapter_Measure adapter_measure = new Adapter_Measure(arrayMeasure, arrayRates);
+                    Adapter_Measure adapter_measure = new Adapter_Measure(arrayMeasure, arrayRates, ratingBar);
                     recyclerMeasure.setAdapter(adapter_measure);
 
                 } catch (JSONException e) {
@@ -179,5 +181,48 @@ public class Dialog_Review extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private void updateData(final String url, final String id){
+        class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
+            @Override
+            protected String doInBackground(String... params) {
+                List<NameValuePair> data = new ArrayList<NameValuePair>();
+                data.add(new BasicNameValuePair("id", id));
+                for (int i=0;i<arrayMeasure.size();i++){
+                    data.add(new BasicNameValuePair("measure[]", ""+arrayMeasure.get(i)));
+                    data.add(new BasicNameValuePair("points[]", ""+Math.round(arrayRates.get(i))));
+                }
+                try {
+                    HttpClient httpClient = new DefaultHttpClient();
+                    HttpPost httpPost = new HttpPost(url);
+                    httpPost.setEntity(new UrlEncodedFormEntity(data));
+                    HttpResponse response = httpClient.execute(httpPost);
+                    HttpEntity entity = response.getEntity();
+                } catch (ClientProtocolException e) {
+                } catch (IOException e) {
+                }
+                return "Data Updated Successfully";
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+            }
+        }
+        SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
+        sendPostReqAsyncTask.execute(id);
     }
 }

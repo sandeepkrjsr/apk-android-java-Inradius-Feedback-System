@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/inradius"
@@ -13,27 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.bleedcode.inradius.Main.Activity_Login">
+        <activity android:name=".Main.Activity_Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.bleedcode.inradius.Main.Activity_Register"/>
-        <activity android:name="com.bleedcode.inradius.Main.Activity_Dashboard"/>
+        <activity android:name=".Main.Activity_Login"/>
+        <activity android:name=".Main.Activity_Register"/>
+        <activity android:name=".Main.Activity_Dashboard"/>
 
-        <activity android:name="com.bleedcode.inradius.General.Activity_Info"/>
-        <activity android:name="com.bleedcode.inradius.Manager.Recycler_Manager"/>
-        <activity android:name="com.bleedcode.inradius.Discussion.Activity_Discussion_Open"/>
+        <activity android:name=".General.Activity_Info"/>
+        <activity android:name=".Manager.Recycler_Manager"/>
+        <activity android:name=".Discussion.Activity_Discussion_Open"/>
 
-        <activity android:name="com.bleedcode.inradius.General.Dialog_Topic"
+        <activity android:name=".General.Dialog_Topic"
             android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>
-        <activity android:name="com.bleedcode.inradius.General.Dialog_Review"
+        <activity android:name=".General.Dialog_Review"
             android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>
-        <activity android:name="com.bleedcode.inradius.Discussion.Dialog_Create"
+        <activity android:name=".Discussion.Dialog_Create"
             android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>
-        <activity android:name="com.bleedcode.inradius.Discussion.Dialog_Reply"
+        <activity android:name=".Discussion.Dialog_Reply"
             android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth"/>
 
     </application>

@@ -69,7 +69,7 @@ public class Fragment_General extends Fragment {
                 startActivity(intent);
             }
         });
-        fab.setVisibility(View.GONE);
+        //fab.setVisibility(View.GONE);
         if (Activity_Login.loggedlevel.equals("0"))
             fab.setVisibility(View.VISIBLE);
 

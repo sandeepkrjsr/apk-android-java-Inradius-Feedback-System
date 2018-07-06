@@ -75,7 +75,6 @@ public class Activity_Info extends Activity {
                 Intent intent = new Intent(Activity_Info.this, Dialog_Review.class);
                 intent.putExtra("topic_id", get_id);
                 startActivity(intent);
-                finish();
             }
         });
 

@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.bleedcode.inradius.Main.Function_URL;
 import com.bleedcode.inradius.R;
 
 import org.apache.http.HttpEntity;
@@ -29,7 +30,7 @@ public class test extends Activity {
 
     private String id, name;
 
-    static String DataParseUrl = "http://kiitecell.hol.es/test.php";
+    private String url;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,23 +42,28 @@ public class test extends Activity {
 
     private void update_Data() {
         try {
-            id = "67192";
-            name = "Nehal";
+            id = "510";
+            name = "Kiitjj";
 
-            SendDataToServer(id, name);
+            Function_URL f_url = new Function_URL();
+            url = f_url.DATA_QUALITIES + f_url.ACTION_UPDATE;
+            updateData(id, name);
+
+            //SendDataToServer(id, name);
         } catch (Exception e) {}
     }
 
-    private void SendDataToServer(final String id, final String name){
+    private void updateData(final String id, final String name){
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... params) {
                 List<NameValuePair> data = new ArrayList<NameValuePair>();
                 data.add(new BasicNameValuePair("id", id));
-                data.add(new BasicNameValuePair("name", name));
+                data.add(new BasicNameValuePair("points", name));
+                data.add(new BasicNameValuePair("total", name));
                 try {
                     HttpClient httpClient = new DefaultHttpClient();
-                    HttpPost httpPost = new HttpPost(DataParseUrl);
+                    HttpPost httpPost = new HttpPost(url);
                     httpPost.setEntity(new UrlEncodedFormEntity(data));
                     HttpResponse response = httpClient.execute(httpPost);
                     HttpEntity entity = response.getEntity();
