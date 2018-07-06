@@ -26,6 +26,8 @@ import java.lang.reflect.Field;
 
 public class Activity_Dashboard extends AppCompatActivity {
 
+    android.support.v7.widget.Toolbar toolbar;
+
     private Activity_Dashboard.SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
@@ -37,6 +39,8 @@ public class Activity_Dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbar);
 
         mSectionsPagerAdapter = new Activity_Dashboard.SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -55,10 +59,10 @@ public class Activity_Dashboard extends AppCompatActivity {
                     case R.id.feedback:
                         fragmentChange(0);
                         break;
-                    case R.id.discussion:
+                    case R.id.manager:
                         fragmentChange(1);
                         break;
-                    case R.id.subscriptions:
+                    case R.id.discussion:
                         fragmentChange(2);
                         break;
                     case R.id.profile:
@@ -125,10 +129,10 @@ public class Activity_Dashboard extends AppCompatActivity {
                     Fragment_General tab0 = new Fragment_General();
                     return tab0;
                 case 1:
-                    Fragment_Discussion tab1 = new Fragment_Discussion();
+                    Fragment_Dummy tab1 = new Fragment_Dummy();
                     return tab1;
                 case 2:
-                    Fragment_Dummy tab2 = new Fragment_Dummy();
+                    Fragment_Discussion tab2 = new Fragment_Discussion();
                     return tab2;
                 case 3:
                     Fragment_Profile tab3 = new Fragment_Profile();

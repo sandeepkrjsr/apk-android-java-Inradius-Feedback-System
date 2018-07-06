@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/img_logo"
+
+                android:layout_marginBottom="70dp"
+
+
+                android:layout_height="180dp" />
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/img_text"
+                android:id="@+id/imageview"
+                android:layout_marginBottom="70dp"
+
+
+                android:layout_height="180dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/email_password_fields"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:gravity="center_horizontal"
+        android:paddingRight="16dp">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:padding="4dp">
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="email"
+            android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+
+            android:padding="4dp">
+        <EditText
+            android:id="@+id/pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="password"
+            android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/email_password_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/email_password_fields"
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/signin"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_button_solidfill"
+                android:textColor="#ffffff"
+                android:text="SIGN IN"
+                android:onClick="Signin"/>
+            <TextView
+                android:id="@+id/signup"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorAccent"
+                android:textStyle="italic"
+                android:text="Create Account"
+                android:textSize="16dp"
+                android:onClick="Signup"/>
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/signed_in_buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_weight="1.18"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+
+        android:visibility="gone"
+        android:paddingRight="16dp">
+
+
+        <Button
+            android:id="@+id/verify_email_button"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+
+            android:background="@drawable/circle_button_solidfill"
+            android:text="Send Verification mail"
+
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

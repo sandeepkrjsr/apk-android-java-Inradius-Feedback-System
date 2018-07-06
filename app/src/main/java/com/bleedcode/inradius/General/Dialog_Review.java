@@ -99,7 +99,6 @@ public class Dialog_Review extends AppCompatActivity {
         putData();
         Intent intent = new Intent(getBaseContext(), Activity_Info.class);
         intent.putExtra("topic_id", get_topicid);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
     }

@@ -25,7 +25,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -85,7 +87,7 @@ public class Dialog_Create extends AppCompatActivity {
                 List<NameValuePair> data = new ArrayList<NameValuePair>();
                 data.add(new BasicNameValuePair("id", id));
                 data.add(new BasicNameValuePair("topic", topic));
-                data.add(new BasicNameValuePair("desc", desc));
+                data.add(new BasicNameValuePair("desc", desc + " | " + new SimpleDateFormat("dd MMM yyyy").format(new Date())));
                 data.add(new BasicNameValuePair("maker", maker));
                 try {
                     HttpClient httpClient = new DefaultHttpClient();

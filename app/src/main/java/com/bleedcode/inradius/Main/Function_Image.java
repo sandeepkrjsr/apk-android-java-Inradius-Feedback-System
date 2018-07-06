@@ -27,8 +27,8 @@ public class Function_Image {
 
     private static String get_poster;
 
-    private static StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Employees_Images");
-    private static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Inradius/Employees");
+    private static StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Inradius");
+    private static DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Inradius");
 
     public static void getImage(final Context context, final ImageView image, final String path){
         databaseReference.addValueEventListener(new ValueEventListener() {

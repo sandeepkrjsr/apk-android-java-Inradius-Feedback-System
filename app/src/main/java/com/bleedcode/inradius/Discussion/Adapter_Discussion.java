@@ -57,7 +57,7 @@ class Adapter_Discussion extends RecyclerView.Adapter<Adapter_Discussion.ViewHol
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         topic.setText(arrayTopic.get(position));
-        desc.setText(arrayDesc.get(position));
+        desc.setText("Asked by " + arrayDesc.get(position));
 
         card.setOnClickListener(new View.OnClickListener() {
             @Override

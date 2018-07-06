@@ -5,20 +5,20 @@
         android:id="@+id/feedback"
         android:enabled="true"
         android:icon="@drawable/ic_feedback"
-        android:title="Feedback"
+        android:title="General"
         app:showAsAction="ifRoom">
     </item>
-    <item android:title="Discussions"
+    <item android:title="Manager"
         android:icon="@drawable/ic_group"
-        android:id="@+id/discussion"
+        android:id="@+id/manager"
         android:enabled="true"
         app:showAsAction="ifRoom">
     </item>
-    <item android:title="Subscriptions"
+    <item android:title="Discussion"
         android:enabled="true"
         android:icon="@drawable/ic_bell"
         app:showAsAction="ifRoom"
-        android:id="@+id/subscriptions">
+        android:id="@+id/discussion">
     </item>
     <item android:title="My Profile"
         android:enabled="true"

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/uploadImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/img_upload"
+        android:layout_marginBottom="20dp"/>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="290dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/emp_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint=" Full Name"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="290dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/emp_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Email id"
+            android:inputType="textEmailAddress" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="290dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/emp_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Password"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="290dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/emp_dept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Department"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+    <TextView
+        android:id="@+id/emp_pos"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:text="Select Designation"
+        android:textSize="20dp"
+        android:padding="20dp"/>
+    <Button
+        android:id="@+id/register"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/circle_button_solidfill"
+        android:textColor="#ffffff"
+        android:text="REGISTER"
+        android:onClick="Register"/>
+</LinearLayout>
+
+

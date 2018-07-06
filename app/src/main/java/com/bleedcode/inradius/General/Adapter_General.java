@@ -16,6 +16,8 @@ import com.bleedcode.inradius.R;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by 1505560 on 10-Feb-18.
  */
@@ -24,29 +26,28 @@ class Adapter_General extends RecyclerView.Adapter<Adapter_General.ViewHolder> {
     Context context;
 
     private CardView card;
-    private TextView topic, desc;
-    private PieChart pieChart;
-    private ImageView image;
+    private TextView title, desc;
+    private ImageView squareImage;
+    private CircleImageView circleImage;
 
-    private List<String> arrayId, arrayTopic, arrayDesc;
+    private List<String> arrayId, arrayTitle, arrayDesc;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ViewHolder(View view) {
             super(view);
             card = (CardView) view.findViewById(R.id.card);
-            topic = (TextView)view.findViewById(R.id.topicName);
-            desc = (TextView)view.findViewById(R.id.topicDesc);
-            image = (ImageView)view.findViewById(R.id.image);
-            //rating = (TextView) view.findViewById(R.id.topicRating);
+            title = (TextView)view.findViewById(R.id.title);
+            desc = (TextView)view.findViewById(R.id.desc);
+            squareImage = (ImageView)view.findViewById(R.id.squareImage);
+            circleImage = (CircleImageView) view.findViewById(R.id.circleImage);
         }
     }
 
-    public Adapter_General(List<String> arrayId, List<String> arrayTopic, List<String> arrayDesc) {
+    public Adapter_General(List<String> arrayId, List<String> arrayTitle, List<String> arrayDesc) {
         this.arrayId = arrayId;
-        this.arrayTopic = arrayTopic;
+        this.arrayTitle = arrayTitle;
         this.arrayDesc = arrayDesc;
-        //this.arrayRating = arrayRating;
     }
 
     @Override
@@ -60,11 +61,10 @@ class Adapter_General extends RecyclerView.Adapter<Adapter_General.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        topic.setText(arrayTopic.get(position));
+        title.setText(arrayTitle.get(position));
         desc.setText(arrayDesc.get(position));
-        //rating.setText(arrayRating.get(position));
 
-        Function_Image.getImage(context, image, arrayId.get(position));
+        Function_Image.getImage(context, squareImage, arrayId.get(position));
 
         card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +78,7 @@ class Adapter_General extends RecyclerView.Adapter<Adapter_General.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return arrayTopic.size();
+        return arrayId.size();
     }
 
     @Override

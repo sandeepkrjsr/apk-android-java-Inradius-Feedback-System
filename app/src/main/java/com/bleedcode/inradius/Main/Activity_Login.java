@@ -39,7 +39,7 @@ public class Activity_Login extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login2);
 
         email = (TextView)findViewById(R.id.email);
         pass = (TextView)findViewById(R.id.pass);

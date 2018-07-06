@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -46,6 +47,7 @@ public class Fragment_Profile extends Fragment {
     private TextView topic, desc, rating, reviewers, button;
     private PieChart pieChart;
     private ImageView squareImage, circleImage;
+    private RelativeLayout stats;
 
     private List<String> arrayIds, arrayReviewer, arrayRated, arrayCommented, arrayMeasure, arrayPoints, arrayTotal, array_calcRate;;
 
@@ -70,6 +72,7 @@ public class Fragment_Profile extends Fragment {
         recyclerQuality = (RecyclerView)view.findViewById(R.id.recyclerQuality);
         circleImage = (ImageView)view.findViewById(R.id.circleImage);
         squareImage = (ImageView)view.findViewById(R.id.squareImage);
+        stats = (RelativeLayout)view.findViewById(R.id.stats);
 
         arrayIds = new ArrayList<>();
         arrayReviewer = new ArrayList<>();
@@ -161,6 +164,7 @@ public class Fragment_Profile extends Fragment {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray result = jsonObject.getJSONArray("report");
 
+                    calc_rating = 0f;
                     for (int i = 0; i < result.length(); i++){
                         JSONObject get_data = result.getJSONObject(i);
 
@@ -178,6 +182,9 @@ public class Fragment_Profile extends Fragment {
                     rating.setText(Math.round((calc_rating / result.length()) * 10.0) / 10.0+"");
                     Function_Pie fp = new Function_Pie();
                     fp.makePie(pieChart, calc_rating / result.length());
+
+                    if (result.length()==0)
+                        stats.setVisibility(View.GONE);
                 } catch (JSONException e) {
                 }
             }

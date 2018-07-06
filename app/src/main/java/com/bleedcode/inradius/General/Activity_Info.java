@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -13,6 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bleedcode.inradius.Main.Activity_Login;
+import com.bleedcode.inradius.Main.Function_Image;
 import com.github.mikephil.charting.charts.PieChart;
 import com.bleedcode.inradius.Main.Function_Pie;
 import com.bleedcode.inradius.Main.Function_Review;
@@ -31,6 +35,8 @@ public class Activity_Info extends Activity {
     private RecyclerView recyclerReview, recyclerQuality;
     private TextView topic, desc, rating, reviewers, addreview;
     private PieChart pieChart;
+    private ImageView image;
+    private RelativeLayout stats;
 
     private List<String> arrayIds, arrayReviewer, arrayRated, arrayCommented, arrayMeasure, arrayPoints, arrayTotal, array_calcRate;
 
@@ -48,12 +54,14 @@ public class Activity_Info extends Activity {
 
         topic = (TextView)findViewById(R.id.topic);
         desc = (TextView)findViewById(R.id.desc);
+        image = (ImageView)findViewById(R.id.squareImage);
         addreview = (TextView)findViewById(R.id.addreview);
         rating = (TextView)findViewById(R.id.mainRatingPoint);
         reviewers = (TextView)findViewById(R.id.mainRatingReviewers);
         pieChart = (PieChart) findViewById(R.id.mainRatingPie);
         recyclerReview = (RecyclerView) findViewById(R.id.recyclerReview);
         recyclerQuality = (RecyclerView) findViewById(R.id.recyclerQuality);
+        stats = (RelativeLayout)findViewById(R.id.stats);
 
         arrayIds = new ArrayList<>();
         arrayReviewer = new ArrayList<>();
@@ -70,12 +78,15 @@ public class Activity_Info extends Activity {
         LinearLayoutManager layoutReview = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerReview.setLayoutManager(layoutReview);
 
+        Function_Image.getImage(getBaseContext(), image, get_id);
+
         addreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Activity_Info.this, Dialog_Review.class);
                 intent.putExtra("topic_id", get_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -139,6 +150,9 @@ public class Activity_Info extends Activity {
                     rating.setText(Math.round((calc_rating / result.length()) * 10.0) / 10.0+"");
                     Function_Pie fp = new Function_Pie();
                     fp.makePie(pieChart, calc_rating / result.length());
+
+                    if (result.length()==0)
+                        stats.setVisibility(View.GONE);
                 } catch (JSONException e) {
                 }
             }

@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">Inradius</string>
+
+    <string-array name="designation">
+        <item>HR</item>
+        <item>Intern</item>
+        <item>Operation</item>
+        <item>Supervior</item>
+        <item>Manager</item>
+        <item>Director</item>
+        <item>President</item>
+        <item>CEO</item>
+    </string-array>
+
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="auth_failed">Authentication failed</string>
     <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>

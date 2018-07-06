@@ -4,7 +4,8 @@
     android:layout_height="120dp"
     android:padding="8dp"
     android:gravity="center"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:id="@+id/stats">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,26 +20,16 @@
             android:id="@+id/mainRatingPoint"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:text="4.5"
+            android:text=""
             android:gravity="center"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="108dp" />
         <TextView
-            android:id="@+id/mainRatingText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/mainRatingPie"
-            android:layout_marginLeft="16dp"
-            android:layout_centerVertical="true"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Excellent" />
-        <TextView
             android:id="@+id/mainRatingReviewers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/mainRatingText"
-            android:layout_below="@+id/mainRatingText"
+            android:layout_toRightOf="@id/mainRatingPie"
             android:layout_marginTop="36dp"
-            android:text="256 Reviews" />
+            android:text="" />
     </RelativeLayout>
 </RelativeLayout>

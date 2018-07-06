@@ -65,7 +65,7 @@ public class Dialog_Topic extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_topic);
-        setTitle("Add Topic");
+        setTitle("Add Catagory");
 
         input_topic = (EditText)findViewById(R.id.input_topic);
         input_desc = (EditText)findViewById(R.id.input_desc);
@@ -83,6 +83,8 @@ public class Dialog_Topic extends AppCompatActivity {
     }
 
     public void Next(View view){
+        setTitle("Measure/Qualities for user feedback");
+
         uploadimage.setVisibility(View.GONE);
         input_topic.setVisibility(View.GONE);
         input_desc.setVisibility(View.GONE);
@@ -106,7 +108,7 @@ public class Dialog_Topic extends AppCompatActivity {
 
     private void putData() {
         Random random = new Random();
-        int number = 99 + random.nextInt(900);
+        int number = 100 + random.nextInt(899);
 
         id = ""+number;
         topic = input_topic.getText().toString();
