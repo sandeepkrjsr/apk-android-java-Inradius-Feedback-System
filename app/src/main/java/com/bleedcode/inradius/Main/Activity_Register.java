@@ -49,7 +49,7 @@ public class Activity_Register extends Activity {
 
     private String url_quality;
 
-    private Uri imguri = null;
+    private Uri imguri = Uri.parse("http://www.hyper99.com/images/Default-Profile.png");
 
     static String DataParseUrl = "http://kiitecell.hol.es/Inradius_employees.php?action=create";
 

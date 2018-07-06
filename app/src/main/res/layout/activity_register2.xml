@@ -8,7 +8,7 @@
         android:id="@+id/uploadImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/img_upload"
+        android:src="@drawable/img_logo"
         android:layout_marginBottom="20dp"/>
     <android.support.design.widget.TextInputLayout
         android:layout_width="290dp"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint=" Full Name"
-            android:inputType="text" />
+            android:inputType="textCapWords" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
         android:layout_width="290dp"

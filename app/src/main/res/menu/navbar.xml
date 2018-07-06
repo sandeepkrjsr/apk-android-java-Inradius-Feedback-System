@@ -8,12 +8,12 @@
         android:title="General"
         app:showAsAction="ifRoom">
     </item>
-    <item android:title="Manager"
+    <!--<item android:title="Manager"
         android:icon="@drawable/ic_group"
         android:id="@+id/manager"
         android:enabled="true"
         app:showAsAction="ifRoom">
-    </item>
+    </item>-->
     <item android:title="Discussion"
         android:enabled="true"
         android:icon="@drawable/ic_bell"

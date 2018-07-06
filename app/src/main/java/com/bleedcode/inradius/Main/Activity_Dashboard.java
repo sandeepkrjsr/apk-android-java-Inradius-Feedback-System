@@ -59,9 +59,9 @@ public class Activity_Dashboard extends AppCompatActivity {
                     case R.id.feedback:
                         fragmentChange(0);
                         break;
-                    case R.id.manager:
+                    /*case R.id.manager:
                         fragmentChange(1);
-                        break;
+                        break;*/
                     case R.id.discussion:
                         fragmentChange(2);
                         break;

@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bleedcode.inradius.Main.Activity_Login;
 import com.bleedcode.inradius.Main.Function_URL;
 import com.bleedcode.inradius.R;
 
@@ -71,12 +72,12 @@ public class Recycler_Manager extends AppCompatActivity {
                     for (int i = 0; i < result.length(); i++){
                         JSONObject get_data = result.getJSONObject(i);
 
-                        //if (Integer.parseInt(get_data.getString("level")) > Integer.parseInt(Activity_Login.loggedlevel)){
+                        if (Integer.parseInt(get_data.getString("level")) > Integer.parseInt(Activity_Login.loggedlevel)){
                             arrayId.add(get_data.getString("id"));
                             arrayName.add(get_data.getString("name"));
                             arrayPos.add(get_data.getString("pos"));
                             arrayDept.add(get_data.getString("dept"));
-                        //}
+                        }
                     }
                     adapter = new Adapter_Manager(arrayId, arrayName, arrayPos, arrayDept);
                     recyclerView.setAdapter(adapter);
