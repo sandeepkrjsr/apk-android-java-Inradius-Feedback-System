@@ -4,25 +4,11 @@ if($connection->connect_error){
 	die("Could not connect to database");
 }
 
-$table = 'Inradius_Employees';
+$table = 'Inradius_Qualities';
 $action = 'read';
 
 if (isset($_GET['action'])) {
 	$action = $_GET['action'];
-}
-
-if ($action == 'fetch') {
-	$id = $_GET['id'];
-
-	$sql = "SELECT * FROM $table WHERE id='$id'";
-	$result = $connection->query($sql);
-	$report = array();
-
-	while ($row = $result->fetch_assoc()) {
-		array_push($report, $row);
-	}
-
-	$res['report'] = $report;
 }
 
 if ($action == 'read') {
@@ -37,19 +23,29 @@ if ($action == 'read') {
 	$res['report'] = $report;
 }
 
+if ($action == 'fetch') {
+	$id = $_GET['id'];
+
+	$sql = "SELECT * FROM $table WHERE topic_id='$id'";
+	$result = $connection->query($sql);
+	$report = array();
+
+	while ($row = $result->fetch_assoc()) {
+		array_push($report, $row);
+	}
+
+	$res['report'] = $report;
+}
+
 if ($action == 'create') {
 	$id = $_POST['id'];
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$pass = $_POST['pass'];
-	$level = $_POST['level'];
-	$pos = $_POST['pos'];
-	$dept = $_POST['dept'];
-
-	$designation = array("HR", "Intern", "Operation", "Supervisor", "Manager", "Director", "President", "CEO");
-
-	$sql = "INSERT INTO $table VALUES ('$id','$name','$email','$pass','$level','$designation[$level]','$dept')";
-	$result = $connection->query($sql);
+	$topic = $_POST['topic'];
+	$measure = $_POST['measure'];
+	
+	for ($i=0; $i < sizeof($measure); $i++) { 
+		$sql = "INSERT INTO $table VALUES ('$id','$topic','$measure[$i]',0,0)";
+		$result = $connection->query($sql);
+	}
 	
 	if($result){
 		$res['message'] = "Product added successfully!";
@@ -58,16 +54,16 @@ if ($action == 'create') {
 		$res['message'] = "Could not insert product";
 	}
 }
-/*
+
 if ($action == 'update') {
 	$id = $_POST['id'];
-	$item = $_POST['item'];
-	$price = $_POST['price'];
-	$quantity = $_POST['quantity'];
-	$minimum = $_POST['minimum'];
+	$measure = $_POST['measure'];
+	$points = $_POST['points'];
 
-	$sql = "UPDATE $table SET item = '$item', price = '$price', quantity = '$quantity', minimum = '$minimum' WHERE id = '$id'";
-	$result = $connection->query($sql);
+	for ($i=0; $i < sizeof($points); $i++) { 
+		$sql = "UPDATE $table SET points = points + '$points[$i]', total = total + '5' WHERE topic_id = '$id' AND measure = '$measure[$i]'";
+		$result = $connection->query($sql);
+	}
 	
 	if($result){
 		$res['message'] = "Product updated successfully!";
@@ -76,7 +72,7 @@ if ($action == 'update') {
 		$res['message'] = "Could not update product";
 	}
 }
-
+/*
 if ($action == 'delete') {
 	$id = $_POST['id'];
 

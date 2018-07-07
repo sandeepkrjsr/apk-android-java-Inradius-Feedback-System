@@ -4,11 +4,23 @@ if($connection->connect_error){
 	die("Could not connect to database");
 }
 
-$table = 'Inradius_Employees';
+$table = 'Inradius_Topics';
 $action = 'read';
 
 if (isset($_GET['action'])) {
 	$action = $_GET['action'];
+}
+
+if ($action == 'read') {
+	$sql = "SELECT * FROM $table";
+	$result = $connection->query($sql);
+	$report = array();
+
+	while ($row = $result->fetch_assoc()) {
+		array_push($report, $row);
+	}
+
+	$res['report'] = $report;
 }
 
 if ($action == 'fetch') {
@@ -25,30 +37,13 @@ if ($action == 'fetch') {
 	$res['report'] = $report;
 }
 
-if ($action == 'read') {
-	$sql = "SELECT * FROM $table";
-	$result = $connection->query($sql);
-	$report = array();
-
-	while ($row = $result->fetch_assoc()) {
-		array_push($report, $row);
-	}
-
-	$res['report'] = $report;
-}
-
 if ($action == 'create') {
 	$id = $_POST['id'];
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$pass = $_POST['pass'];
-	$level = $_POST['level'];
-	$pos = $_POST['pos'];
-	$dept = $_POST['dept'];
+	$topic = $_POST['topic'];
+	$desc = $_POST['desc'];
+	$maker = $_POST['maker'];
 
-	$designation = array("HR", "Intern", "Operation", "Supervisor", "Manager", "Director", "President", "CEO");
-
-	$sql = "INSERT INTO $table VALUES ('$id','$name','$email','$pass','$level','$designation[$level]','$dept')";
+	$sql = "INSERT INTO $table VALUES ('$id','$topic','$desc',1,1,'$maker')";
 	$result = $connection->query($sql);
 	
 	if($result){

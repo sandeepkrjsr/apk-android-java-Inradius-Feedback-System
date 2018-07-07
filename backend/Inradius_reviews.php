@@ -45,7 +45,7 @@ if ($action == 'create') {
 	$rated = $_POST['rated'];
 	$commented = $_POST['commented'];
 
-	$sql = "INSERT INTO $table VALUES ('$id','$topic_id','$emp_id','$emp_name','$rated','$commented')";
+	$sql = "INSERT INTO $table VALUES ('$id','$topic_id','$emp_id','$emp_name','$rated','$commented') ON DUPLICATE KEY UPDATE rated='$rated', commented='$commented'";
 	$result = $connection->query($sql);
 	
 	if($result){

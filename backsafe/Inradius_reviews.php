@@ -4,25 +4,11 @@ if($connection->connect_error){
 	die("Could not connect to database");
 }
 
-$table = 'Inradius_Employees';
+$table = 'Inradius_Reviews';
 $action = 'read';
 
 if (isset($_GET['action'])) {
 	$action = $_GET['action'];
-}
-
-if ($action == 'fetch') {
-	$id = $_GET['id'];
-
-	$sql = "SELECT * FROM $table WHERE id='$id'";
-	$result = $connection->query($sql);
-	$report = array();
-
-	while ($row = $result->fetch_assoc()) {
-		array_push($report, $row);
-	}
-
-	$res['report'] = $report;
 }
 
 if ($action == 'read') {
@@ -37,18 +23,29 @@ if ($action == 'read') {
 	$res['report'] = $report;
 }
 
+if ($action == 'fetch') {
+	$id = $_GET['id'];
+
+	$sql = "SELECT * FROM $table WHERE topic_id='$id'";
+	$result = $connection->query($sql);
+	$report = array();
+
+	while ($row = $result->fetch_assoc()) {
+		array_push($report, $row);
+	}
+
+	$res['report'] = $report;
+}
+
 if ($action == 'create') {
 	$id = $_POST['id'];
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$pass = $_POST['pass'];
-	$level = $_POST['level'];
-	$pos = $_POST['pos'];
-	$dept = $_POST['dept'];
+	$topic_id = $_POST['topic_id'];
+	$emp_id = $_POST['emp_id'];
+	$emp_name = $_POST['emp_name'];
+	$rated = $_POST['rated'];
+	$commented = $_POST['commented'];
 
-	$designation = array("HR", "Intern", "Operation", "Supervisor", "Manager", "Director", "President", "CEO");
-
-	$sql = "INSERT INTO $table VALUES ('$id','$name','$email','$pass','$level','$designation[$level]','$dept')";
+	$sql = "INSERT INTO $table VALUES ('$id','$topic_id','$emp_id','$emp_name','$rated','$commented')";
 	$result = $connection->query($sql);
 	
 	if($result){
