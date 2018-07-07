@@ -3,6 +3,7 @@ package com.bleedcode.inradius.Main;
 import android.content.Context;
 import android.net.Uri;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bleedcode.inradius.R;
@@ -38,8 +39,10 @@ public class Function_Image {
                 get_poster = map.get(path);
                 Picasso.with(context).load(get_poster).into(image);
 
-                /*if (get_poster.compareTo("null")==0)
-                    image.setImageDrawable(context.getResources().getDrawable(R.drawable.img_user));*/
+                //Toast.makeText(context, get_poster,Toast.LENGTH_SHORT).show();
+                //if (get_poster.equals("null"))
+                //    Toast.makeText(context, "Hello",Toast.LENGTH_SHORT).show();
+                    //image.setImageDrawable(context.getResources().getDrawable(R.drawable.img_user));*/
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

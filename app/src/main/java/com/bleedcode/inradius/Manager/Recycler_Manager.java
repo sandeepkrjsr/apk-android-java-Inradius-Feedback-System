@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -36,12 +37,12 @@ public class Recycler_Manager extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+    //private RecyclerView.LayoutManager layoutManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recycler);
+        setContentView(R.layout.gridview);
 
         arrayId = new ArrayList<>();
         arrayName = new ArrayList<>();
@@ -51,10 +52,10 @@ public class Recycler_Manager extends AppCompatActivity {
         fab = (FloatingActionButton)findViewById(R.id.fab);
         fab.setVisibility(View.GONE);
 
-        recyclerView = (RecyclerView)findViewById(R.id.recycler);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getBaseContext());
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
+        gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
         Function_URL f_url = new Function_URL();
         String url = f_url.DATA_EMPLOYEES + f_url.ACTION_READ;

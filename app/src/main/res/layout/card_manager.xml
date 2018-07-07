@@ -1,129 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <android.support.v7.widget.CardView
+    android:layout_height="wrap_content"
+    android:id="@+id/card"
+    android:layout_margin="10dp">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:padding="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:id="@+id/card">
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/emp_image"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/ic_user" />
+
+        <TextView
+            android:id="@+id/emp_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="129dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/emp_image"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/ic_user" />
-
-                <TextView
-                    android:id="@+id/emp_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/emp_pos"
-                    android:layout_alignStart="@+id/emp_pos"
-                    android:layout_alignTop="@+id/emp_image"
-                    android:text="Name"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/emp_pos"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/emp_name"
-                    android:layout_marginEnd="26dp"
-                    android:layout_marginRight="26dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toLeftOf="@+id/emp_image"
-                    android:layout_toStartOf="@+id/emp_image"
-                    android:text="Position"
-                    android:textSize="10dp" />
-                <TextView
-                    android:id="@+id/emp_dept"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/emp_pos"
-                    android:layout_marginEnd="26dp"
-                    android:layout_marginRight="26dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toLeftOf="@+id/emp_image"
-                    android:layout_toStartOf="@+id/emp_image"
-                    android:text="Department"
-                    android:textSize="10dp" />
-
-                <!--<Button
-                    android:id="@+id/givefeedback"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_alignEnd="@+id/emp_pos"
-                    android:layout_alignRight="@+id/emp_pos"
-                    android:layout_alignTop="@+id/emp_pos"
-                    android:background="@drawable/circle_button_solidfill_yellow"
-                    android:padding="10dp"
-                    android:text="GIVE FEEDBACK"
-                    android:textColor="@color/white"
-                    android:textSize="10dp" />-->
-            </RelativeLayout>
-            <!--<View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#cfcfcf">
-            </View>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:weightSum="2">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/topicRating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:padding="4dp"
-                        android:drawableRight="@drawable/ic_star"
-                        android:drawablePadding="3dp"
-                        android:text="4.5" />
-                </LinearLayout>
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#d4d3d3">
-                </View>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:padding="4dp"
-                        android:drawableRight="@drawable/ic_group"
-                        android:drawablePadding="4dp"
-                        android:text="98" />
-                </LinearLayout>
-
-
-            </LinearLayout>-->
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+            android:text="Name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/emp_pos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emp_name"
+            android:text="Position"
+            android:textSize="10dp" />
+        <TextView
+            android:id="@+id/emp_dept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emp_pos"
+            android:text="Department"
+            android:textSize="10dp"
+            android:textStyle="italic"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

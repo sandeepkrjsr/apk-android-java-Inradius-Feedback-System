@@ -15,6 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bleedcode.inradius.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -49,7 +55,7 @@ public class Activity_Register extends Activity {
 
     private String url_quality;
 
-    private Uri imguri = Uri.parse("http://www.hyper99.com/images/Default-Profile.png");
+    private Uri imguri = Uri.parse("http://riverfoxrealty.com/wp-content/uploads/2018/02/User-Default.jpg");
 
     static String DataParseUrl = "http://kiitecell.hol.es/Inradius_employees.php?action=create";
 
@@ -121,6 +127,7 @@ public class Activity_Register extends Activity {
 
     public void Register(View view){
         putData();
+        //Toast.makeText(getBaseContext(), ""+imguri,Toast.LENGTH_SHORT).show();
     }
 
     private void putData() {
@@ -136,6 +143,21 @@ public class Activity_Register extends Activity {
             pos = emp_pos.getText().toString();
 
             if (pass.length()>2){
+                Function_Image.postImage(getBaseContext(), imguri, id);
+                if (imguri != null) {
+                    StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Inradius");
+                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Inradius");
+                    StorageReference filepath = storageReference.child(imguri.getLastPathSegment());
+                    filepath.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Uri downloaduri = taskSnapshot.getDownloadUrl();
+                            databaseReference.child(id).setValue(imguri);
+                            Toast.makeText(getBaseContext(), "Uploaded Successfully !", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
                 SendDataToServer(id, name, email, pass, level, pos, dept);
 
                 Function_URL f_url = new Function_URL();
@@ -145,8 +167,6 @@ public class Activity_Register extends Activity {
                 Activity_Login.userSaved(id, name, level);
                 Intent intent = new Intent(getBaseContext(), Activity_Login.class);
                 startActivity(intent);
-
-                Function_Image.postImage(getBaseContext(), imguri, id);
             }else {
                 Toast.makeText(getBaseContext(), "Incorrect Info",Toast.LENGTH_SHORT).show();
             }
