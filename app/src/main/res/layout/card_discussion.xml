@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:id="@+id/card">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -19,14 +19,29 @@
                 android:layout_height="wrap_content"
                 android:text="Manager Feedback"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
             <TextView
                 android:id="@+id/topicDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/topicName"
                 android:text="Share your feelings about your manager"
                 android:textSize="10dp" />
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/bell_notify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_bell_notify" />
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/bell_ring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/ic_bell_ring" />
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

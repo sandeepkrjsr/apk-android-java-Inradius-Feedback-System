@@ -57,12 +57,11 @@
                 android:id="@+id/addreview"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
-                android:text="Write a Review"
+                android:text="Add Feedback"
                 android:textStyle="bold"
                 android:background="@drawable/circle_button_solidfill"
                 android:textColor="@color/white"
                 android:padding="15dp"
-                android:textScaleX="1.1"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="2dp"/>
             <!--<RatingBar
@@ -73,5 +72,19 @@
                 android:numStars="5"
                 style="?android:attr/ratingBarStyleIndicator"/>-->
         </LinearLayout>
+        <Button
+            android:visibility="gone"
+            android:id="@+id/uploadImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/circleImage"
+            android:layout_alignRight="@id/circleImage"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="-15dp"
+            android:background="@drawable/circle_button_solidfill_gray"
+            android:text="Set Image"
+            android:textColor="@color/colorPrimaryDark"
+            android:padding="5dp"
+            android:textSize="12dp"/>
     </RelativeLayout>
 </LinearLayout>

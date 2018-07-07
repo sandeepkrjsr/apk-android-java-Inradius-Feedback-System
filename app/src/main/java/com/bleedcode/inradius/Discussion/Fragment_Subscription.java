@@ -10,15 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toolbar;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bleedcode.inradius.Main.Activity_Login;
 import com.bleedcode.inradius.Main.Function_URL;
-import com.bleedcode.inradius.Manager.Recycler_Manager;
 import com.bleedcode.inradius.R;
 
 import org.json.JSONArray;
@@ -32,7 +31,7 @@ import java.util.List;
  * Created by MadhuRima on 19-03-2017.
  */
 
-public class Fragment_Discussion extends Fragment {
+public class Fragment_Subscription extends Fragment {
 
     private FloatingActionButton fab;
 
@@ -51,13 +50,7 @@ public class Fragment_Discussion extends Fragment {
         arrayDesc = new ArrayList<>();
 
         fab = (FloatingActionButton)view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Dialog_Create.class);
-                startActivity(intent);
-            }
-        });
+        fab.setVisibility(View.GONE);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
@@ -66,7 +59,7 @@ public class Fragment_Discussion extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
 
         Function_URL f_url = new Function_URL();
-        String url = f_url.DATA_TOPICS + f_url.ACTION_READ;
+        String url = f_url.DATA_SUBSCRIPTIONS + f_url.ACTION_FETCH + "&emp_id=" + Activity_Login.loggedin;
         getData(url);
 
         return view;

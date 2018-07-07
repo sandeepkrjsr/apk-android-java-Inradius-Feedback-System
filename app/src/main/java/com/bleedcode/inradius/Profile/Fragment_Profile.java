@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -48,6 +49,7 @@ public class Fragment_Profile extends Fragment {
     private PieChart pieChart;
     private ImageView squareImage, circleImage;
     private RelativeLayout stats;
+    private Button uploadImage;
 
     private List<String> arrayIds, arrayReviewer, arrayRated, arrayCommented, arrayMeasure, arrayPoints, arrayTotal, array_calcRate;;
 
@@ -73,6 +75,7 @@ public class Fragment_Profile extends Fragment {
         circleImage = (ImageView)view.findViewById(R.id.circleImage);
         squareImage = (ImageView)view.findViewById(R.id.squareImage);
         stats = (RelativeLayout)view.findViewById(R.id.stats);
+        uploadImage = (Button)view.findViewById(R.id.uploadImage);
 
         arrayIds = new ArrayList<>();
         arrayReviewer = new ArrayList<>();
@@ -95,15 +98,17 @@ public class Fragment_Profile extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (button.getText().equals("Logout")){
-                    Activity_Login.logout();
-                    Intent intent = new Intent(getContext(), Activity_Login.class);
-                    startActivity(intent);
-                }
-                if (button.getText().equals("Upload")) {
-                    Function_Image.postImage(getContext(), imguri, Activity_Login.loggedin);
-                    button.setText("Logout");
-                }
+                Activity_Login.logout();
+                Intent intent = new Intent(getContext(), Activity_Login.class);
+                startActivity(intent);
+            }
+        });
+
+        uploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Function_Image.postImage(getContext(), imguri, Activity_Login.loggedin);
+                uploadImage.setVisibility(View.GONE);
             }
         });
 
@@ -114,7 +119,7 @@ public class Fragment_Profile extends Fragment {
                 gallery.setType("image/*");
                 startActivityForResult(gallery, 1);
 
-                button.setText("Upload");
+                uploadImage.setVisibility(View.VISIBLE);
             }
         });
 

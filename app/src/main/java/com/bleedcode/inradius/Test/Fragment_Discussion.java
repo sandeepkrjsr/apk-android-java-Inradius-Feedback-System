@@ -1,4 +1,4 @@
-package com.bleedcode.inradius.Discussion;
+package com.bleedcode.inradius.Test;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,15 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toolbar;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bleedcode.inradius.Discussion.Dialog_Create;
 import com.bleedcode.inradius.Main.Function_URL;
-import com.bleedcode.inradius.Manager.Recycler_Manager;
 import com.bleedcode.inradius.R;
 
 import org.json.JSONArray;
@@ -44,7 +43,7 @@ public class Fragment_Discussion extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recycler, container, false);
+        View view = inflater.inflate(R.layout.fragment_general, container, false);
 
         arrayId = new ArrayList<>();
         arrayTopic = new ArrayList<>();
@@ -89,7 +88,7 @@ public class Fragment_Discussion extends Fragment {
                             arrayDesc.add(get_data.getString("desc"));
                         }
                     }
-                    adapter = new Adapter_Discussion(arrayId, arrayTopic, arrayDesc);
+                    //adapter = new Adapter_Discussion(arrayId, arrayTopic, arrayDesc);
                     recyclerView.setAdapter(adapter);
                 } catch (JSONException e) {
                 }

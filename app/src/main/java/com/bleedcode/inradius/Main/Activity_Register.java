@@ -39,8 +39,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Activity_Register extends Activity {
 
-    private EditText emp_name, emp_email, emp_pass, emp_dept;
-    private TextView emp_pos;
+    private EditText emp_name, emp_email, emp_pass;
+    private TextView emp_dept, emp_pos;
     private CircleImageView uploadImage;
 
     private String id, name, email, pass, pos, dept, level = "0";
@@ -70,17 +70,25 @@ public class Activity_Register extends Activity {
         emp_name = (EditText)findViewById(R.id.emp_name);
         emp_email = (EditText)findViewById(R.id.emp_email);
         emp_pass = (EditText)findViewById(R.id.emp_pass);
-        emp_dept = (EditText)findViewById(R.id.emp_dept);
+        emp_dept = (TextView)findViewById(R.id.emp_dept);
         emp_pos = (TextView)findViewById(R.id.emp_pos);
         uploadImage = (CircleImageView) findViewById(R.id.uploadImage);
 
         measure = new ArrayList<>();
 
+        emp_dept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence choices[] = getResources().getStringArray(R.array.department);
+                Select_Option("Select Department", choices);
+            }
+        });
+
         emp_pos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CharSequence choices[] = getResources().getStringArray(R.array.designation);
-                Select_Option("Select State", choices);
+                Select_Option("Select Designation", choices);
             }
         });
 
@@ -100,8 +108,12 @@ public class Activity_Register extends Activity {
         builder.setItems(choices, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                emp_pos.setText(choices[which]);
-                level = ""+which;
+                if (header.compareTo("Select Department")==0){
+                    emp_dept.setText(choices[which]);
+                }else if (header.compareTo("Select Designation")==0){
+                    emp_pos.setText(choices[which]);
+                    level = ""+which;
+                }
             }
         });
         builder.create().show();

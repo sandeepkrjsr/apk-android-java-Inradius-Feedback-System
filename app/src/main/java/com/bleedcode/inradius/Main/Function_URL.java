@@ -12,6 +12,7 @@ public class Function_URL {
     public String DATA_TOPICS = "http://kiitecell.hol.es/Inradius_topics.php";
     public String DATA_REVIEWS = "http://kiitecell.hol.es/Inradius_reviews.php";
     public String DATA_QUALITIES = "http://kiitecell.hol.es/Inradius_qualities.php";
+    public String DATA_SUBSCRIPTIONS = "http://kiitecell.hol.es/Inradius_subscriptions.php";
 
     public String ACTION_READ = "?action=read";
     public String ACTION_CREATE = "?action=create";
